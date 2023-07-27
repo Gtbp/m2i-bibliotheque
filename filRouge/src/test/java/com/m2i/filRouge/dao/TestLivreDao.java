@@ -2,6 +2,9 @@ package com.m2i.filRouge.dao;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +29,7 @@ public class TestLivreDao {
 	private IDaoDomaine iDaoDomaine;
 	
 	 @Test
-	 public void testCreate() {
+	 public void testCreateLivre() {
 		Domaine domaineTest = iDaoDomaine.create(new Domaine(null, "domaineTest", "descriptionTest"));
 		Livre livreTest =  iDaoLivre.create(new Livre(null,
 				 "titreTest",
@@ -36,28 +39,65 @@ public class TestLivreDao {
 				 EtatLivre.BON_ETAT,
 				 domaineTest));
 		 
-		 assertTrue(livreTest.getTitre()=="titreTest");
+		 assertTrue(livreTest.getIdLivre() > 0 
+				 && livreTest.getTitre()=="titreTest" 
+				 && livreTest.getAuteur()=="auteurTest" 
+				 && livreTest.getEditeur() == "editeurTest");
+		
 	 }
 	 
-//	 @Test
-//	 public void testFindBy() {
+	 @Test
+	 public void testFindLivreById() {
+
+		Livre livreTestFindById =  iDaoLivre.findById((long) 1);
+		 assertTrue(livreTestFindById.getIdLivre() == 1);
+		 
+	 }
+	 
+	 @Test
+	 public void testFindAllLivres() {
+		 List <Livre> livres = iDaoLivre.findAll();
+		 assertTrue(livres.size() > 0);
+	 }
+	 
+	 @Test
+	 public void testUpdateLivre() {
+//		 Livre livreTest =  iDaoLivre.findById((long) 1);
+//		 livreTest.setTitre("titreUpdateTest");
+//		 iDaoLivre.update(livreTest);
+//		 Livre livreUpdateTest = livreTest;
+//		 System.out.println(livreUpdateTest);
+//		 assertTrue(livreUpdateTest.getTitre() == "titreUpdateTest" );
 //		 
-//	 }
-//	 
-//	 @Test
-//	 public void testFindAll() {
-//		 
-//	 }
-//	 
-//	 @Test
-//	 public void testUpdate() {
-//		 
-//	 }
-//	 
-//	 @Test
-//	 public void testDelete() {
-//		 
-//	 }
-//	 
+		 
+	 }
+	 
+	 @Test
+	 public void testDelete() {
+//		 Domaine domaineTest = iDaoDomaine.findById((long) 1);
+//		 Livre livreDeleteTest = iDaoLivre.create(new Livre(null,
+//				 "titreDeleteTest",
+//				 "auteurDeleteTest",
+//				 "editeurDeleteTest",
+//				 true,
+//				 EtatLivre.BON_ETAT,
+//				 domaineTest));
+//				 
+//		System.out.println("sysout avant delete" + livreDeleteTest.getTitre());		 
+//		iDaoLivre.delete(livreDeleteTest.getIdLivre());
+//		
+//		Livre livre1 = null;
+//		Optional <Livre> optionalLivre = iDaoLivre.findById(livreDeleteTest.getIdLivre());
+//		if(optionalLivre.isPresent()) {
+//			livre1 = optionalLivre.get();
+//			
+//		}
+//		 assertTrue(livre1.getAuteur() == null );
+//		
+
+	     
+		 
+	 }
+	 
 	 
 }
