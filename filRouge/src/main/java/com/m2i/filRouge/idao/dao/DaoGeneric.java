@@ -2,37 +2,49 @@ package com.m2i.filRouge.idao.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import com.m2i.filRouge.idao.IDaoGeneric;
 
-public class DaoGeneric<E, PK> implements IDaoGeneric<E, PK> {
+public abstract class DaoGeneric<E, PK> implements IDaoGeneric<E, PK> {
+	
+	private Class<E> entityClass; 
+	
+	public DaoGeneric(Class<E> entityClass) {
+		this.entityClass = entityClass;
+	}
+	
+	public abstract EntityManager getEntityManager();
 
+	
 	@Override
 	public E findById(PK id) {
-		// TODO Auto-generated method stub
-		return null;
+		return getEntityManager().find(entityClass, id);
 	}
 
 	@Override
 	public List<E> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return getEntityManager().createQuery("FROM " + entityClass.getSimpleName(),
+				entityClass)
+	            .getResultList();
 	}
 
 	@Override
 	public E create(E e) {
-		// TODO Auto-generated method stub
-		return null;
+		getEntityManager().persist(e);
+		return e;
 	}
 
 	@Override
 	public void update(E e) {
-		// TODO Auto-generated method stub
+		getEntityManager().merge(e);
 		
 	}
 
 	@Override
-	public void delete(PK num) {
-		// TODO Auto-generated method stub
+	public void delete(PK id) {
+		E e= getEntityManager().find(entityClass, id);
+		getEntityManager().remove(e);
 		
 	}
 
