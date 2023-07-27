@@ -45,6 +45,26 @@ public class Livre {
 	private Domaine domaine;
 	
 	@OneToOne(optional= true, mappedBy ="livre", cascade = CascadeType.ALL )
-	private Livre livre;
+	private Emprunt emprunt;
+
+	public Livre(Long idLivre, String titre, String auteur, String editeur, Boolean dispo, EtatLivre etat,
+			Domaine domaine) {
+		super();
+		this.idLivre = idLivre;
+		this.titre = titre;
+		this.auteur = auteur;
+		this.editeur = editeur;
+		this.dispo = dispo;
+		this.etat = etat;
+		this.domaine = domaine;
+	}
+
+	
+	
+	
+	
+	// Constructeur
+	
+	
 	
 }
