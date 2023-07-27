@@ -1,7 +1,15 @@
 package com.m2i.filRouge.entities;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +17,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type_personne" , discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue(value = "Personne") 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Personne {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="idPersonne")
+	private Long idPersonne;
+	
 	@Column(name="prenom")
 	private String prenom;
 	

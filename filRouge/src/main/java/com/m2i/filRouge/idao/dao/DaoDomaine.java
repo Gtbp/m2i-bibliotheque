@@ -6,23 +6,23 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.m2i.filRouge.entities.Emprunt;
-import com.m2i.filRouge.idao.IDaoEmprunt;
+import com.m2i.filRouge.entities.Domaine;
+import com.m2i.filRouge.idao.IDaoDomaine;
 
 @Repository
 @Transactional
-public class DaoEmprunt extends DaoGeneric<Emprunt, Long> implements IDaoEmprunt  {
-
+public class DaoDomaine extends DaoGeneric<Domaine, Long> implements IDaoDomaine {
+	
 	@PersistenceContext
 	private EntityManager entityManager;
-
-	public DaoEmprunt() {
-		super(Emprunt.class);
-	}
-
+	
 	@Override
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
+	
+	public DaoDomaine(){
+		super(Domaine.class);
+		}
 
 }

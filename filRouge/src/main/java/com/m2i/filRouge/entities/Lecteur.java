@@ -3,12 +3,9 @@ package com.m2i.filRouge.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -17,20 +14,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@DiscriminatorValue(value = "Lecteur")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Lecteur extends Personne{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="idLecteur")
-	private Long idLecteur;
 	
-	@OneToMany(fetch= FetchType.LAZY, mappedBy= "emprunt", cascade = CascadeType.ALL)
+	@OneToMany(fetch= FetchType.LAZY, mappedBy= "idEmprunt", cascade = CascadeType.ALL)
 	private List<Emprunt> emprunts;
 	
-	public Lecteur(String prenom, String nom, String email, String telephone, String adresse, Long idLecteur) {
-		super(prenom, nom, email, telephone, adresse);
-		this.idLecteur = idLecteur;
+	public Lecteur(Long idPersonne, String prenom, String nom, String email, String telephone, String adresse) {
+		super(idPersonne, prenom, nom, email, telephone, adresse);
+		
 		
 		
 	}
