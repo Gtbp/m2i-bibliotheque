@@ -8,5 +8,6 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Lecteur extends Personne{
 
+
 	private Long idLecteur;
 }
