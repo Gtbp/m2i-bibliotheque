@@ -3,7 +3,6 @@ package com.m2i.filRouge.dao;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -22,11 +21,66 @@ public class TestLivreDao {
 
 	Logger logger = LoggerFactory.getLogger(TestLivreDao.class);
 	
+	
 	@Autowired
 	private IDaoLivre iDaoLivre;
 	
 	@Autowired
 	private IDaoDomaine iDaoDomaine;
+	
+	 // Test Domaine
+	
+	 @Test
+	 public void testCreateDomaine() {
+		Domaine domaineTestCreate = iDaoDomaine.create(new Domaine(null, "domaineTestCreate", "descriptionTestCreate"));
+		 
+		 assertTrue(domaineTestCreate.getIdDomaine() > 0 
+				 && domaineTestCreate.getNom()=="domaineTestCreate" 
+				 && domaineTestCreate.getDescription()=="descriptionTestCreate" 
+				);
+	 }
+	 
+	 @Test
+	 public void testFindDomaineById() {
+
+		Domaine domaineTestById =  iDaoDomaine.findById((long) 1);
+		 assertTrue(domaineTestById.getIdDomaine() == 1);
+		 
+	 }
+	 
+	 @Test
+	 public void testFindAllDomaines() {
+		 List <Domaine> domaines = iDaoDomaine.findAll();
+		 assertTrue(domaines.size() > 0);
+	 }
+	 
+	 @Test
+	 public void testUpdateDomaine() {
+		 Domaine domaineTest =  iDaoDomaine.findById((long) 1);
+		 domaineTest.setNom("domaineTestUpdated");
+		 iDaoDomaine.update(domaineTest);
+		 Domaine domaineUpdateTest = domaineTest;
+		 assertTrue(domaineUpdateTest.getNom() == "domaineTestUpdated" );
+		 
+		 
+	 }
+	 
+	 @Test
+	 public void testDeleteDomaine() {
+//		Impossible de delete un Domaine avec les constraints
+		 
+//		 Domaine domaineTest = iDaoDomaine.findById((long) 1);
+//		
+//		 iDaoDomaine.delete(domaineTest.getIdDomaine());
+//		
+//		 Domaine domaineTestDeleted = iDaoDomaine.findById((long) 1);
+//		 
+//		 assertTrue(domaineTestDeleted == null);
+			 
+	 }
+	 
+	
+	// Test Livre
 	
 	 @Test
 	 public void testCreateLivre() {
@@ -62,42 +116,35 @@ public class TestLivreDao {
 	 
 	 @Test
 	 public void testUpdateLivre() {
-//		 Livre livreTest =  iDaoLivre.findById((long) 1);
-//		 livreTest.setTitre("titreUpdateTest");
-//		 iDaoLivre.update(livreTest);
-//		 Livre livreUpdateTest = livreTest;
-//		 System.out.println(livreUpdateTest);
-//		 assertTrue(livreUpdateTest.getTitre() == "titreUpdateTest" );
-//		 
+		 Livre livreTest =  iDaoLivre.findById((long) 1);
+		 livreTest.setTitre("titreUpdateTest");
+		 iDaoLivre.update(livreTest);
+		 Livre livreUpdateTest = livreTest;
+		 assertTrue(livreUpdateTest.getTitre() == "titreUpdateTest" );
 		 
 	 }
 	 
 	 @Test
-	 public void testDelete() {
-//		 Domaine domaineTest = iDaoDomaine.findById((long) 1);
-//		 Livre livreDeleteTest = iDaoLivre.create(new Livre(null,
-//				 "titreDeleteTest",
-//				 "auteurDeleteTest",
-//				 "editeurDeleteTest",
-//				 true,
-//				 EtatLivre.BON_ETAT,
-//				 domaineTest));
-//				 
-//		System.out.println("sysout avant delete" + livreDeleteTest.getTitre());		 
-//		iDaoLivre.delete(livreDeleteTest.getIdLivre());
-//		
-//		Livre livre1 = null;
-//		Optional <Livre> optionalLivre = iDaoLivre.findById(livreDeleteTest.getIdLivre());
-//		if(optionalLivre.isPresent()) {
-//			livre1 = optionalLivre.get();
-//			
-//		}
-//		 assertTrue(livre1.getAuteur() == null );
-//		
+	 public void testDeleteLivre() {
+		 Domaine domaineTest = iDaoDomaine.findById((long) 1);
+		 Livre livreDeleteTest = iDaoLivre.create(new Livre(null,
+				 "titreDeleteTest",
+				 "auteurDeleteTest",
+				 "editeurDeleteTest",
+				 true,
+				 EtatLivre.BON_ETAT,
+				 domaineTest));
+		
+		iDaoLivre.delete(livreDeleteTest.getIdLivre());
+		
+		livreDeleteTest = iDaoLivre.findById(livreDeleteTest.getIdLivre());
 
-	     
-		 
+		 assertTrue(livreDeleteTest == null);
+
+	
+			 
 	 }
 	 
+
 	 
 }
