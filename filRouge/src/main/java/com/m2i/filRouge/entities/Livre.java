@@ -1,9 +1,13 @@
 package com.m2i.filRouge.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,5 +39,12 @@ public class Livre {
 	
 	@Column(name="EtatLivre")
 	private EtatLivre etat = EtatLivre.BON_ETAT;
+	
+	@ManyToOne
+		@JoinColumn(name= "domaine")
+	private Domaine domaine;
+	
+	@OneToOne(optional= true, mappedBy ="livre", cascade = CascadeType.ALL )
+	private Livre livre;
 	
 }

@@ -1,6 +1,7 @@
 package com.m2i.filRouge.entities;
 
 import javax.persistence.Column;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,4 +14,7 @@ public class Incident {
 
 	@Column(name="motif")
 	private String motif;
+	
+	@OneToOne(mappedBy="incident")
+	private Emprunt emprut;
 }
