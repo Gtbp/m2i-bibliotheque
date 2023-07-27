@@ -1,8 +1,8 @@
-package com.m2i.filRouge.dao;
+package com.m2i.filRouge.idao;
 
 import java.util.List;
 
-public interface DaoGeneric<E,PK> {
+public interface IDaoGeneric<E,PK> {
 	
 	E findById(PK id);
     List<E> findAll();
