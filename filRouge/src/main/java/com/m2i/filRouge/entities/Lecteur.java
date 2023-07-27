@@ -27,4 +27,13 @@ public class Lecteur extends Personne{
 	
 	@OneToMany(fetch= FetchType.LAZY, mappedBy= "emprunt", cascade = CascadeType.ALL)
 	private List<Emprunt> emprunts;
+	
+	public Lecteur(String prenom, String nom, String email, String telephone, String adresse, Long idLecteur) {
+		super(prenom, nom, email, telephone, adresse);
+		this.idLecteur = idLecteur;
+		
+		
+	}
+
+	
 }

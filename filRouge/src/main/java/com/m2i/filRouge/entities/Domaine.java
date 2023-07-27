@@ -31,4 +31,17 @@ public class Domaine {
 	
 	@OneToMany(fetch= FetchType.LAZY, mappedBy= "livre")
 	private List<Livre> livres;
+	
+
+	public Domaine(Long idDomaine, String nom, String description) {
+		super();
+		this.idDomaine = idDomaine;
+		this.nom = nom;
+		this.description = description;
+	}
+	
+	
+	
+	
+	
 }
