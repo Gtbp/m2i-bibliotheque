@@ -67,6 +67,7 @@ public class TestPersonneDao {
 
 	@Test
 	public void testDeletePersonne() {
+		Personne personne = new Personne(null, "", "", "", "", "");
 		Personne personneTestDelete = iDaoPersonne.findById((long) 1);
 		iDaoPersonne.delete(personneTestDelete.getIdPersonne());
 
@@ -116,10 +117,16 @@ public class TestPersonneDao {
 
 	}
 
-	/*
-	 * @Test public void testDeleteLecteur() {
-	 * 
-	 * }
-	 */
+	@Test
+	public void testDeleteLecteur() {
+		Lecteur lecteur = new Lecteur(null, "", "", "", "", "");
+		iDaoLecteur.create(lecteur);
+		Lecteur lecteurTestDelete = iDaoLecteur.findById(lecteur.getIdPersonne());
+		
+		iDaoLecteur.delete(lecteurTestDelete.getIdPersonne());
+		lecteurTestDelete = iDaoLecteur.findById(lecteurTestDelete.getIdPersonne());
+		assertTrue(lecteurTestDelete == null);
+
+	}
 
 }
