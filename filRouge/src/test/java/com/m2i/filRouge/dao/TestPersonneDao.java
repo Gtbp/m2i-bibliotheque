@@ -34,7 +34,7 @@ public class TestPersonneDao {
 		Personne personneTestCreate = new Personne(null, "prenomTest", "nomTest", "emailTest", 
 				"telephoneTest","adresseTest");
 		iDaoPersonne.create(personneTestCreate);
-		logger.debug("personneTestCreate " + personneTestCreate);
+		logger.debug("personneTestCreate " + personneTestCreate.getPrenom());
 		
 		assertTrue(personneTestCreate.getIdPersonne() > 0
 				&& personneTestCreate.getPrenom() == "prenomTest"
@@ -63,17 +63,21 @@ public class TestPersonneDao {
 		 personneTestUpdate.setPrenom("prenomUpdateTest");
 		 iDaoPersonne.update(personneTestUpdate);
 		 
-		 logger.debug("personneTestUpdate " + personneTestUpdate);
-		// assertTrue(personneTestUpdate.getPrenom() == "prenomUpdateTest");
+		 logger.debug("personneTestUpdate " + personneTestUpdate.getPrenom());
 		 assertEquals("prenomUpdateTest", personneTestUpdate.getPrenom());
 	}
 	 
-	/*@Test
+	@Test
 	public void testDeletePersonne() {
+		 Personne personneTestDelete = iDaoPersonne.findById((long)1);
+		 iDaoPersonne.delete(personneTestDelete.getIdPersonne());
+		 
+		 personneTestDelete = iDaoPersonne.findById(personneTestDelete.getIdPersonne());
+		 assertTrue(personneTestDelete == null);
 		 
 	}
 	
-	
+	/*
 	// Tous les tests lecteurs	
 	@Test
 	public void testCreateLecteur() {
