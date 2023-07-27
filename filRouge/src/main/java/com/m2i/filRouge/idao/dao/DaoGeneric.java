@@ -3,9 +3,11 @@ package com.m2i.filRouge.idao.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import com.m2i.filRouge.idao.IDaoGeneric;
 
+@Transactional
 public abstract class DaoGeneric<E, PK> implements IDaoGeneric<E, PK> {
 	
 	private Class<E> entityClass; 

@@ -3,6 +3,7 @@ package com.m2i.filRouge.entities;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@Entity
 @Getter @Setter @ToString @NoArgsConstructor @AllArgsConstructor
 public class Domaine {
 
@@ -29,7 +31,7 @@ public class Domaine {
 	@Column(name="description")
 	private String description;
 	
-	@OneToMany(fetch= FetchType.LAZY, mappedBy= "livre")
+	@OneToMany(fetch= FetchType.LAZY, mappedBy= "idLivre")
 	private List<Livre> livres;
 	
 

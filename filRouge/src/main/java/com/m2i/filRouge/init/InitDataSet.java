@@ -51,9 +51,9 @@ public class InitDataSet {
 				 domaineAa));
 		 
 		 
-		 Lecteur lecteurAa = iDaoLecteur.create(new Lecteur("Aa", "aa", "aa", "aa", "aa",null
+		 Lecteur lecteurAa = iDaoLecteur.create(new Lecteur(null,"Aa", "aa", "aa", "aa", "aa"
 				 ));
-		 Lecteur lecteurBb = iDaoLecteur.create(new Lecteur("bb", "bb", "bb", "bb", "bb",null
+		 Lecteur lecteurBb = iDaoLecteur.create(new Lecteur(null,"bb", "bb", "bb", "bb", "bb"
 				 ));
 		 
 		 
