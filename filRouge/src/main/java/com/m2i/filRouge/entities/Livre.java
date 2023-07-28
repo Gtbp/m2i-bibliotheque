@@ -42,6 +42,7 @@ public class Livre {
 		@JoinColumn(name= "domaine")
 	private Domaine domaine;
 	
+	// Constructeur
 
 	public Livre(Long idLivre, String titre, String auteur, String editeur, Boolean dispo, EtatLivre etat,
 			Domaine domaine) {
@@ -59,7 +60,6 @@ public class Livre {
 	
 	
 	
-	// Constructeur
 	
 	
 	
