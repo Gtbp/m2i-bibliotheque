@@ -3,6 +3,7 @@ package com.m2i.filRouge.init;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.m2i.filRouge.entities.Administrateur;
@@ -16,6 +17,7 @@ import com.m2i.filRouge.idao.IDaoEmprunt;
 import com.m2i.filRouge.idao.IDaoLecteur;
 import com.m2i.filRouge.idao.IDaoLivre;
 
+@Profile("init")
 @Component
 public class InitDataSet {
 

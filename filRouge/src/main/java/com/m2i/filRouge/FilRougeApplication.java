@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FilRougeApplication {
 
 	public static void main(String[] args) {
+		// add profile oracle après
+		System.setProperty("spring.profiles.active", "init");
 		SpringApplication.run(FilRougeApplication.class, args);
+		System.out.println("http://localhost:8080/filRouge");
 	}
 
 }
