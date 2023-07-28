@@ -1,5 +1,6 @@
 package com.m2i.filRouge.entities;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,15 +33,17 @@ public class Emprunt {
 	private Date date_debut;
 	
 	@Column(name="date_fin")
-	private Date date_fin;
+	private Date date_fin = initDateFin();
 	
 	@Column(name="type")
 	private TypesEmprunt type;
 	
+	@JsonIgnore
 	@ManyToOne
 		@JoinColumn(name= "idLecteur")
 	private Lecteur lecteur;
 	
+	@JsonIgnore
 	@OneToOne(optional=false)
 			@JoinColumn(name="idLivre")  // pas sûr de l'id ici
 	private Livre livre;
@@ -57,6 +62,16 @@ public class Emprunt {
 		this.livre = livre;
 	}
 	
+	
+	public Date initDateFin() {
+		
+		Calendar c = Calendar.getInstance(); 
+		c.setTime(date_fin); 
+		c.add(Calendar.DATE, 1);
+		date_fin = c.getTime();
+		
+		return date_fin;
+	}
 	
 	
 }

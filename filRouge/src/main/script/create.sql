@@ -669,3 +669,4 @@ alter table emprunt add constraint FK5owklyslb4g6njcu8omc53unp foreign key (moti
 alter table emprunt add constraint FK4wj65w7ulgjwick3b8hwn5tem foreign key (id_lecteur) references personne (id_personne);
 alter table emprunt add constraint FK2c4tf1n0sr8wpaxsw4f3ec2ur foreign key (id_livre) references livre (id_livre);
 alter table livre add constraint FKno6aivssoq8j0vo4ddxgp9eyd foreign key (domaine) references domaine (id_domaine);
+
