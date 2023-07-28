@@ -1,5 +1,7 @@
 package com.m2i.filRouge.idao.dao;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -23,6 +25,14 @@ public class DaoEmprunt extends DaoGeneric<Emprunt, Long> implements IDaoEmprunt
 	@Override
 	public EntityManager getEntityManager() {
 		return entityManager;
+	}
+
+	// a faire
+	
+	@Override
+	public Emprunt prolonger(Long idEmprunt, Date date_fin) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
