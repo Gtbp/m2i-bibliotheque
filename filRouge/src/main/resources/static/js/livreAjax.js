@@ -19,7 +19,7 @@ function ajouterLivre(){
 	                 domaine : domaine        
 	                  };
 	let livreJson = JSON.stringify(livreJs) ;  
-	let wsUrl = "./api-biblio/livre";   
+	let wsUrl = "./api-bibliotheque/livre";   
 	makeAjaxPostRequest(wsUrl,livreJson,function (responseJson){
 		console.log("responseJson="+responseJson);
 		allLivres(); //pour rafraîchir le tableau avec nouveau livre ajoute
@@ -29,7 +29,7 @@ function ajouterLivre(){
 function allLivres(){	
 
 	
-	let wsUrl = "./api-biblio/livre";
+	let wsUrl = "./api-bibliotheque/livre";
 	
 	makeAjaxGetRequest(wsUrl,function(responseJson){
 		let livresJs = JSON.parse(responseJson);
@@ -44,7 +44,7 @@ function allLivres(){
 			(row.insertCell(3)).innerHTML = livre.editeur;
 			(row.insertCell(4)).innerHTML = livre.dispo;
 			(row.insertCell(5)).innerHTML = livre.etat;
-			(row.insertCell(6)).innerHTML = livre.domaine;
+			(row.insertCell(6)).innerHTML = livre.domaine.nom;
 		}
 	});
 	
