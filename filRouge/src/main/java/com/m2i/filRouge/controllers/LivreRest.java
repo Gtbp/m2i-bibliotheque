@@ -1,4 +1,4 @@
-package controllers;
+package com.m2i.filRouge.controllers;
 
 import java.util.List;
 
@@ -17,21 +17,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.m2i.filRouge.entities.Livre;
-import com.m2i.filRouge.idao.dao.DaoLivre;
+import com.m2i.filRouge.idao.IDaoLivre;
 
 @RestController
-@RequestMapping(value="/api-bibliotheque/livre",headers="Accept=application/json")
+@RequestMapping(value="/api-bibliotheque/livre", headers="Accept=application/json")
 @CrossOrigin(origins = "*" , methods = { RequestMethod.GET , RequestMethod.POST})
 public class LivreRest {
 
 	@Autowired
-	private DaoLivre daoLivre; 
+	private IDaoLivre iDaoLivre; 
 	
 	// display one book
 	
 	@GetMapping("/{idLivre}" )
 	public ResponseEntity<?> getLivreById(@PathVariable("idLivre") Long idLivre) {
-	    Livre livre = daoLivre.findById(idLivre);
+	    Livre livre = iDaoLivre.findById(idLivre);
 	    if(livre!=null)
 	    	return new ResponseEntity<Livre>(livre, HttpStatus.OK);
 	    else
@@ -42,7 +42,7 @@ public class LivreRest {
 	// book list
 	@GetMapping("")
 	public List<Livre> getLivres(){
-		return daoLivre.findAll();
+		return iDaoLivre.findAll();
 	}
 	
 	//exemple de fin d'URL: ./api-biblio/livre
@@ -51,7 +51,7 @@ public class LivreRest {
 	
 	@PostMapping("")
 	public Livre postLivre(@RequestBody Livre nouveauLivre) {
-		Livre livre = daoLivre.create(nouveauLivre);
+		Livre livre = iDaoLivre.create(nouveauLivre);
 		return livre; //on retourne le livre avec clef primaire auto_incrémentée
 	}
 	
@@ -63,7 +63,7 @@ public class LivreRest {
 		    Long idLivreToUpdate = idLivre!=null ? idLivre : livre.getIdLivre();
 		   
 		    Livre livreToUpdate = 
-		    		idLivreToUpdate!=null ? daoLivre.findById(idLivreToUpdate) : null;
+		    		idLivreToUpdate!=null ? iDaoLivre.findById(idLivreToUpdate) : null;
 		    
 		    if(livreToUpdate==null)
 		    	return new ResponseEntity<String>("{ \"err\" : \"Livre not found\"}" ,
@@ -71,18 +71,18 @@ public class LivreRest {
 		    
 		    if(livre.getIdLivre()==null)
 		    	livre.setIdLivre(idLivreToUpdate);
-			daoLivre.update(livre);
+		    iDaoLivre.update(livre);
 			return new ResponseEntity<Livre>(livre , HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{idLivre}")
 	public ResponseEntity<?> deleteLivre(@PathVariable("idLivre") Long idLivre) {
-		    Livre livreToDelete = daoLivre.findById(idLivre);
+		    Livre livreToDelete = iDaoLivre.findById(idLivre);
 		    if(livreToDelete==null)
 		    	return new ResponseEntity<String>("{ \"err\" : \"Livre not found\"}" ,
 		    			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
 		    
-		    daoLivre.delete(idLivre);
+		    iDaoLivre.delete(idLivre);
 		    return new ResponseEntity<String>("{ \"done\" : \"Livre deleted\"}" ,HttpStatus.OK); 
 		    
 		}

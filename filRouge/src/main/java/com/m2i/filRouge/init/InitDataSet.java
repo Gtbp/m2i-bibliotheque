@@ -63,8 +63,14 @@ public class InitDataSet {
 		 Lecteur lecteurBb = iDaoLecteur.create(new Lecteur(null,"bb", "bb", "bb", "bb", "bb"
 				 ));
 		 
-		 Administrateur adminAa = iDaoAdmin.create(new Administrateur(null, "initNameAdmin", "initSurNameAdmin", "initEmailAdmin", 
-				 "initTelephoneAdmin", "initAdresseAdmin", "initUsernameAdmin", "initPasswordAdmin"));
+		 Administrateur adminAa = iDaoAdmin.create(new Administrateur(null, 
+				 "initNameAdmin",
+				 "initSurNameAdmin",
+				 "initEmailAdmin", 
+				 "initTelephoneAdmin",
+				 "initAdresseAdmin",
+				 "initUsernameAdmin",
+				 "initPasswordAdmin"));
 		 
 		 
 	 }
