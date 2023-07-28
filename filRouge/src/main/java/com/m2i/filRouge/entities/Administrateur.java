@@ -20,5 +20,10 @@ public class Administrateur extends Personne{
 	
 	@Column(name="password")
 	private String password;
-
+	
+	public Administrateur(Long idPersonne, String prenom, String nom, String email, String telephone, String adresse, String username, String password) {
+		super(idPersonne, prenom, nom, email, telephone, adresse);
+		this.username = username;
+		this.password = password;
+	}
 }

@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import com.m2i.filRouge.entities.Administrateur;
 import com.m2i.filRouge.entities.Domaine;
 import com.m2i.filRouge.entities.Lecteur;
 import com.m2i.filRouge.entities.Livre;
 import com.m2i.filRouge.entities.Livre.EtatLivre;
+import com.m2i.filRouge.idao.IDaoAdmin;
 import com.m2i.filRouge.idao.IDaoDomaine;
 import com.m2i.filRouge.idao.IDaoEmprunt;
 import com.m2i.filRouge.idao.IDaoLecteur;
@@ -30,6 +32,9 @@ public class InitDataSet {
 	
 	 @Autowired
 	 private IDaoEmprunt iDaoEmprunt;
+	 
+	 @Autowired
+	 private IDaoAdmin iDaoAdmin;
 	 
 	 @PostConstruct
 	 public void initData() {
@@ -58,7 +63,8 @@ public class InitDataSet {
 		 Lecteur lecteurBb = iDaoLecteur.create(new Lecteur(null,"bb", "bb", "bb", "bb", "bb"
 				 ));
 		 
-		 
+		 Administrateur adminAa = iDaoAdmin.create(new Administrateur(null, "initNameAdmin", "initSurNameAdmin", "initEmailAdmin", 
+				 "initTelephoneAdmin", "initAdresseAdmin", "initUsernameAdmin", "initPasswordAdmin"));
 		 
 		 
 	 }

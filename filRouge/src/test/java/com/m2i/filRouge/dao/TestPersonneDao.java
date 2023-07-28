@@ -11,8 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.m2i.filRouge.entities.Administrateur;
 import com.m2i.filRouge.entities.Lecteur;
 import com.m2i.filRouge.entities.Personne;
+import com.m2i.filRouge.idao.IDaoAdmin;
 import com.m2i.filRouge.idao.IDaoLecteur;
 import com.m2i.filRouge.idao.IDaoPersonne;
 
@@ -23,12 +25,15 @@ public class TestPersonneDao {
 	Logger logger = LoggerFactory.getLogger(TestPersonneDao.class);
 
 	@Autowired
+	private IDaoPersonne iDaoPersonne;
+
+	@Autowired
 	private IDaoLecteur iDaoLecteur;
 
 	@Autowired
-	private IDaoPersonne iDaoPersonne;
+	private IDaoAdmin iDaoAdmin;
 
-	// Tous les tests Personne
+	// Tests Personne
 	@Test
 	public void testCreatePersonne() {
 		Personne personneTestCreate = new Personne(null, "prenomTest", "nomTest", "emailTest", "telephoneTest",
@@ -76,7 +81,7 @@ public class TestPersonneDao {
 
 	}
 
-	// Tous les tests lecteurs
+	// Tests Lecteur
 	@Test
 	public void testCreateLecteur() {
 		Lecteur lecteurTestCreate = new Lecteur(null, "prenomLecteurTest", "nomLecteurTest", "emailLecteurTest",
@@ -122,11 +127,60 @@ public class TestPersonneDao {
 		Lecteur lecteur = new Lecteur(null, "", "", "", "", "");
 		iDaoLecteur.create(lecteur);
 		Lecteur lecteurTestDelete = iDaoLecteur.findById(lecteur.getIdPersonne());
-		
+
 		iDaoLecteur.delete(lecteurTestDelete.getIdPersonne());
 		lecteurTestDelete = iDaoLecteur.findById(lecteurTestDelete.getIdPersonne());
 		assertTrue(lecteurTestDelete == null);
 
 	}
 
+	// Tests Administrateur
+	@Test
+	public void testCreateAdmin() {
+
+		Administrateur adminTestCreate = new Administrateur("usernameAdminTest", "passwordAdminTest");
+		iDaoAdmin.create(adminTestCreate);
+		logger.debug("adminTestCreate = " + adminTestCreate.getPrenom());
+
+		assertTrue(adminTestCreate.getIdPersonne() > 0 && adminTestCreate.getUsername() == "usernameAdminTest"
+				&& adminTestCreate.getPassword() == "passwordAdminTest");
+	}
+
+	@Test
+	public void testFindAdminById() {
+		Administrateur adminTestFindById = iDaoAdmin.findById((long) 3);
+		logger.debug("adminTestFindById = " + adminTestFindById.getIdPersonne());
+		assertTrue(adminTestFindById.getIdPersonne() == 3);
+
+	}
+
+	@Test
+	public void testFindAllAdmins() {
+		List<Administrateur> admins = iDaoAdmin.findAll();
+		iDaoAdmin.findAll();
+		assertTrue(admins.size() > 0);
+	}
+
+	@Test
+	public void testUpdateAdmin() {
+		Administrateur adminTestUpdate = iDaoAdmin.findById((long) 3);
+		adminTestUpdate.setUsername("usernameAdminTestUpdate");
+		iDaoAdmin.update(adminTestUpdate);
+
+		logger.debug("adminTestUpdate = " + adminTestUpdate.getUsername());
+		assertEquals("usernameAdminTestUpdate", adminTestUpdate.getUsername());
+
+	}
+
+	@Test
+	public void testDeleteAdmin() {
+		Administrateur admin = new Administrateur("", "");
+		iDaoAdmin.create(admin);
+		Administrateur adminTestDelete = iDaoAdmin.findById(admin.getIdPersonne());
+		
+		iDaoAdmin.delete(adminTestDelete.getIdPersonne());
+		adminTestDelete = iDaoAdmin.findById(adminTestDelete.getIdPersonne());
+		assertTrue(adminTestDelete == null);
+		
+	}
 }
