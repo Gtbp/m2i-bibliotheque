@@ -41,11 +41,10 @@ function allLivres(){
 			(row.insertCell(0)).innerHTML = livre.idLivre;
 			(row.insertCell(1)).innerHTML = livre.titre;
 			(row.insertCell(2)).innerHTML = livre.auteur;
-			(row.insertCell(3)).innerHTML = livre.auteur;
-			(row.insertCell(4)).innerHTML = livre.editeur;
-			(row.insertCell(5)).innerHTML = livre.dispo;
-			(row.insertCell(6)).innerHTML = livre.etat;
-			(row.insertCell(7)).innerHTML = livre.domaine;
+			(row.insertCell(3)).innerHTML = livre.editeur;
+			(row.insertCell(4)).innerHTML = livre.dispo;
+			(row.insertCell(5)).innerHTML = livre.etat;
+			(row.insertCell(6)).innerHTML = livre.domaine;
 		}
 	});
 	
