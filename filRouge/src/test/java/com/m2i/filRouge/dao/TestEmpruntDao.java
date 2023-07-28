@@ -2,7 +2,6 @@ package com.m2i.filRouge.dao;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.m2i.filRouge.entities.Emprunt;
 import com.m2i.filRouge.entities.Emprunt.TypesEmprunt;
@@ -21,9 +21,9 @@ import com.m2i.filRouge.idao.IDaoDomaine;
 import com.m2i.filRouge.idao.IDaoEmprunt;
 import com.m2i.filRouge.idao.IDaoLecteur;
 import com.m2i.filRouge.idao.IDaoLivre;
-import com.m2i.filRouge.idao.dao.DaoEmprunt;
 
 @SpringBootTest
+@ActiveProfiles({"oracle"})
 public class TestEmpruntDao {
 
 Logger logger = LoggerFactory.getLogger(TestEmpruntDao.class);

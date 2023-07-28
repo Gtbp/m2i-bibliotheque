@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.m2i.filRouge.entities.Administrateur;
 import com.m2i.filRouge.entities.Lecteur;
@@ -19,7 +20,7 @@ import com.m2i.filRouge.idao.IDaoLecteur;
 import com.m2i.filRouge.idao.IDaoPersonne;
 
 @SpringBootTest
-// @ActiveProfiles({"oracle"})
+@ActiveProfiles({"oracle"})
 public class TestPersonneDao {
 
 	Logger logger = LoggerFactory.getLogger(TestPersonneDao.class);
@@ -73,7 +74,8 @@ public class TestPersonneDao {
 	@Test
 	public void testDeletePersonne() {
 		Personne personne = new Personne(null, "", "", "", "", "");
-		Personne personneTestDelete = iDaoPersonne.findById((long) 1);
+		iDaoPersonne.create(personne);
+		Personne personneTestDelete = iDaoPersonne.findById(personne.getIdPersonne());
 		iDaoPersonne.delete(personneTestDelete.getIdPersonne());
 
 		personneTestDelete = iDaoPersonne.findById(personneTestDelete.getIdPersonne());
