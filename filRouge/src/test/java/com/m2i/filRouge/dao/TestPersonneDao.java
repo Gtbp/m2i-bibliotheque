@@ -98,9 +98,12 @@ public class TestPersonneDao {
 
 	@Test
 	public void testFindLecteurById() {
-		Lecteur lecteurTestFindById = iDaoLecteur.findById((long) 1);
+		Lecteur lecteurTestId = new Lecteur(null, "prenomLecteurTestId", "nomLecteurTestId", "emailLecteurTestId",
+				"telephoneLecteurTestId", "adresseLecteurTestId");
+		iDaoLecteur.create(lecteurTestId);
+		Lecteur lecteurTestFindById = iDaoLecteur.findById(lecteurTestId.getIdPersonne());
 		logger.debug("lecteurTestFindById = " + lecteurTestFindById.getIdPersonne());
-		assertTrue(lecteurTestFindById.getIdPersonne() == 1);
+		assertEquals( "prenomLecteurTestId",lecteurTestFindById.getPrenom());
 
 	}
 
@@ -113,7 +116,11 @@ public class TestPersonneDao {
 
 	@Test
 	public void testUpdateLecteur() {
-		Lecteur lecteurTestUpdate = iDaoLecteur.findById((long) 1);
+		Lecteur lecteurTestAUpdate = new Lecteur(null, "prenomLecteurTestUpdate", "nomLecteurTestUpdate", "emailLecteurTestUpdate",
+				"telephoneLecteurTestUpdate", "adresseLecteurTestUpdate");
+		iDaoLecteur.create(lecteurTestAUpdate);
+		
+		Lecteur lecteurTestUpdate = iDaoLecteur.findById(lecteurTestAUpdate.getIdPersonne());
 		lecteurTestUpdate.setPrenom("lecteurUpdateTest");
 		iDaoLecteur.update(lecteurTestUpdate);
 
@@ -138,7 +145,13 @@ public class TestPersonneDao {
 	@Test
 	public void testCreateAdmin() {
 
-		Administrateur adminTestCreate = new Administrateur("usernameAdminTest", "passwordAdminTest");
+		Administrateur adminTestCreate = new Administrateur(null, "prenomAdminTest",
+				"nomAdminTest",
+				"emailAdminTest",
+				"telephoneAdminTest",
+				"adresseAdminTest",
+				"usernameAdminTest",
+				"passwordAdminTest");
 		iDaoAdmin.create(adminTestCreate);
 		logger.debug("adminTestCreate = " + adminTestCreate.getPrenom());
 
@@ -148,9 +161,18 @@ public class TestPersonneDao {
 
 	@Test
 	public void testFindAdminById() {
-		Administrateur adminTestFindById = iDaoAdmin.findById((long) 3);
-		logger.debug("adminTestFindById = " + adminTestFindById.getIdPersonne());
-		assertTrue(adminTestFindById.getIdPersonne() == 3);
+
+		Administrateur TestFindId = new Administrateur(null, "prenomAdminTest",
+				"nomAdminTestId",
+				"emailAdminTestId",
+				"telephoneAdminTestId",
+				"adresseAdminTestId",
+				"usernameAdminTestId",
+				"passwordAdminTestId");
+		iDaoAdmin.create(TestFindId);
+		
+		Administrateur adminTestFindById = iDaoAdmin.findById(TestFindId.getIdPersonne());
+		assertEquals("usernameAdminTestId", adminTestFindById.getUsername());
 
 	}
 
@@ -163,7 +185,16 @@ public class TestPersonneDao {
 
 	@Test
 	public void testUpdateAdmin() {
-		Administrateur adminTestUpdate = iDaoAdmin.findById((long) 3);
+		Administrateur adminToUpdate = new Administrateur(null, "prenomAdminTestUpdate",
+				"nomAdminTestUpdate",
+				"emailAdminTestUpdate",
+				"telephoneAdminTestUpdate",
+				"adresseAdminTestUpdate",
+				"usernameAdminTestUpdate",
+				"passwordAdminTestUpdate");
+		iDaoAdmin.create(adminToUpdate);
+		
+		Administrateur adminTestUpdate = iDaoAdmin.findById(adminToUpdate.getIdPersonne());
 		adminTestUpdate.setUsername("usernameAdminTestUpdate");
 		iDaoAdmin.update(adminTestUpdate);
 
@@ -174,7 +205,13 @@ public class TestPersonneDao {
 
 	@Test
 	public void testDeleteAdmin() {
-		Administrateur admin = new Administrateur("", "");
+		Administrateur admin = new Administrateur(null, "prenomAdminTest",
+				"nomAdminTest",
+				"emailAdminTest",
+				"telephoneAdminTest",
+				"adresseAdminTest",
+				"usernameAdminTest",
+				"passwordAdminTest");
 		iDaoAdmin.create(admin);
 		Administrateur adminTestDelete = iDaoAdmin.findById(admin.getIdPersonne());
 		
