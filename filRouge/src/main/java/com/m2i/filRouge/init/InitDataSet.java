@@ -1,5 +1,6 @@
 package com.m2i.filRouge.init;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -77,7 +78,10 @@ public class InitDataSet {
 				 "initPasswordAdmin"));
 		 
 		 	Date date_debut = new Date();
+		 
 			Date date_fin = new Date();
+			
+			
 		 Emprunt empruntAa = iDaoEmprunt.create(new Emprunt(null,
 				 date_debut,
 				 date_fin,

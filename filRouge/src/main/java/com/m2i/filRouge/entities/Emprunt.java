@@ -1,5 +1,6 @@
 package com.m2i.filRouge.entities;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -32,7 +33,7 @@ public class Emprunt {
 	private Date date_debut;
 	
 	@Column(name="date_fin")
-	private Date date_fin;
+	private Date date_fin = initDateFin();
 	
 	@Column(name="type")
 	private TypesEmprunt type;
@@ -61,6 +62,16 @@ public class Emprunt {
 		this.livre = livre;
 	}
 	
+	
+	public Date initDateFin() {
+		
+		Calendar c = Calendar.getInstance(); 
+		c.setTime(date_fin); 
+		c.add(Calendar.DATE, 1);
+		date_fin = c.getTime();
+		
+		return date_fin;
+	}
 	
 	
 }
