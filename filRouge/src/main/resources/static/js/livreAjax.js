@@ -9,14 +9,14 @@ function ajouterLivre(){
 	let titre = (document.getElementById("inputTitre")).value;
 	let auteur = (document.getElementById("inputAuteur")).value;
 	let editeur = (document.getElementById("inputEditeur")).value;
-	let domaine = (document.getElementById("inputDomaine")).value;
+	
 	
 	let livreJs = { titre : titre,
 	                 auteur : auteur,
 	                 editeur : editeur, 
 	                 dispo : true, 
 	                 etat : "BON_ETAT", 
-	                 domaine : domaine        
+	                 domaine : 1        
 	                  };
 	let livreJson = JSON.stringify(livreJs) ;  
 	let wsUrl = "./api-bibliotheque/livre";   
