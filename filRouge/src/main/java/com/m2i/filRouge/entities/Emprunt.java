@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,10 +37,12 @@ public class Emprunt {
 	@Column(name="type")
 	private TypesEmprunt type;
 	
+	@JsonIgnore
 	@ManyToOne
 		@JoinColumn(name= "idLecteur")
 	private Lecteur lecteur;
 	
+	@JsonIgnore
 	@OneToOne(optional=false)
 			@JoinColumn(name="idLivre")  // pas sûr de l'id ici
 	private Livre livre;

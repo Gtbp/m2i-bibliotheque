@@ -1,5 +1,7 @@
 package com.m2i.filRouge.init;
 
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +10,10 @@ import org.springframework.stereotype.Component;
 
 import com.m2i.filRouge.entities.Administrateur;
 import com.m2i.filRouge.entities.Domaine;
+import com.m2i.filRouge.entities.Emprunt;
 import com.m2i.filRouge.entities.Lecteur;
 import com.m2i.filRouge.entities.Livre;
+import com.m2i.filRouge.entities.Emprunt.TypesEmprunt;
 import com.m2i.filRouge.entities.Livre.EtatLivre;
 import com.m2i.filRouge.idao.IDaoAdmin;
 import com.m2i.filRouge.idao.IDaoDomaine;
@@ -72,6 +76,19 @@ public class InitDataSet {
 				 "initUsernameAdmin",
 				 "initPasswordAdmin"));
 		 
+		 	Date date_debut = new Date();
+			Date date_fin = new Date();
+		 Emprunt empruntAa = iDaoEmprunt.create(new Emprunt(null,
+				 date_debut,
+				 date_fin,
+				 TypesEmprunt.EFFECTIF,
+				 lecteurAa,
+				 livreAa
+				 ));
 		 
+		 livreAa.setDispo(false);
+		
+		
+
 	 }
 }
