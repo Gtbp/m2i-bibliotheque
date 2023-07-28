@@ -33,7 +33,7 @@ public class Emprunt {
 	private Date date_debut;
 	
 	@Column(name="date_fin")
-	private Date date_fin = initDateFin();
+	private Date date_fin;
 	
 	@Column(name="type")
 	private TypesEmprunt type;
@@ -67,7 +67,7 @@ public class Emprunt {
 		
 		Calendar c = Calendar.getInstance(); 
 		c.setTime(date_fin); 
-		c.add(Calendar.DATE, 1);
+		c.add(Calendar.DATE, 14);
 		date_fin = c.getTime();
 		
 		return date_fin;

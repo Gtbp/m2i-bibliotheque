@@ -20,7 +20,7 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type_personne" , discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "Personne") 
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Getter @Setter @NoArgsConstructor 
 public class Personne {
 
 	@Id
@@ -42,4 +42,16 @@ public class Personne {
 	
 	@Column(name="adresse")
 	private String adresse;
+
+	public Personne(Long idPersonne, String prenom, String nom, String email, String telephone, String adresse) {
+		super();
+		this.idPersonne = idPersonne;
+		this.prenom = prenom;
+		this.nom = nom;
+		this.email = email;
+		this.telephone = telephone;
+		this.adresse = adresse;
+	}
+	
+	
 }

@@ -14,7 +14,9 @@ import com.m2i.filRouge.idao.IDaoEmprunt;
 @Repository
 @Transactional
 public class DaoEmprunt extends DaoGeneric<Emprunt, Long> implements IDaoEmprunt  {
-
+	
+	IDaoEmprunt iDaoEmprunt;
+	
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -30,9 +32,11 @@ public class DaoEmprunt extends DaoGeneric<Emprunt, Long> implements IDaoEmprunt
 	// a faire
 	
 	@Override
-	public Emprunt prolonger(Long idEmprunt, Date date_fin) {
-		// TODO Auto-generated method stub
-		return null;
+	public Emprunt prolonger(Long idEmprunt, Date newDate_fin) {
+			Emprunt emprunt = iDaoEmprunt.findById(idEmprunt);
+			emprunt.setDate_fin(newDate_fin);
+	
+		return emprunt;
 	}
 
 }

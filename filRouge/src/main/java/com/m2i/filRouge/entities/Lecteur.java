@@ -15,7 +15,7 @@ import lombok.Setter;
 
 @Entity
 @DiscriminatorValue(value = "Lecteur")
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Getter @Setter @NoArgsConstructor 
 public class Lecteur extends Personne{
 
 	

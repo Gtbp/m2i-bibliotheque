@@ -2,6 +2,7 @@ package com.m2i.filRouge.dao;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.m2i.filRouge.idao.IDaoDomaine;
 import com.m2i.filRouge.idao.IDaoEmprunt;
 import com.m2i.filRouge.idao.IDaoLecteur;
 import com.m2i.filRouge.idao.IDaoLivre;
+import com.m2i.filRouge.idao.dao.DaoEmprunt;
 
 @SpringBootTest
 public class TestEmpruntDao {
@@ -147,6 +149,19 @@ Logger logger = LoggerFactory.getLogger(TestEmpruntDao.class);
 	@Test
 	public void testProlonger() {
 		
+//		Emprunt emprunt = iDaoEmprunt.findById((long) 2);
+//		
+//		IDaoEmprunt daoEmprunt = new DaoEmprunt();
+//		
+//		Date newDate_fin = new Date();
+//		Calendar c = Calendar.getInstance(); 
+//		c.setTime(newDate_fin); 
+//		c.add(Calendar.DATE, 1);
+//		newDate_fin = c.getTime();
+//		
+//		daoEmprunt.prolonger((long) 2, newDate_fin);
+//		
+//		assertTrue(emprunt.getDate_fin() == newDate_fin);
 	}
 	
 	

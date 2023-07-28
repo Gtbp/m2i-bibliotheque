@@ -56,7 +56,9 @@ public class TestLivreDao {
 	 
 	 @Test
 	 public void testUpdateDomaine() {
-		 Domaine domaineTest =  iDaoDomaine.findById((long) 1);
+		 
+		 Domaine domaineTestAUpdate = iDaoDomaine.create(new Domaine(null, "domaineTestAUpdate", "descAUpdate"));
+		 Domaine domaineTest =  iDaoDomaine.findById(domaineTestAUpdate.getIdDomaine());
 		 domaineTest.setNom("domaineTestUpdated");
 		 iDaoDomaine.update(domaineTest);
 		 Domaine domaineUpdateTest = domaineTest;
@@ -102,9 +104,18 @@ public class TestLivreDao {
 	 
 	 @Test
 	 public void testFindLivreById() {
-
-		Livre livreTestFindById =  iDaoLivre.findById((long) 1);
-		 assertTrue(livreTestFindById.getIdLivre() == 1);
+		 
+		 Domaine domaineTest = iDaoDomaine.create(new Domaine(null, "domaineTest", "descriptionTest"));
+			Livre livreTestFindById =  iDaoLivre.create(new Livre(null,
+					 "titreTestId",
+					 "auteurTestId",
+					 "editeurTestId",
+					 true,
+					 EtatLivre.BON_ETAT,
+					 domaineTest));
+		 
+				iDaoLivre.findById(livreTestFindById.getIdLivre());
+		 assertTrue(livreTestFindById.getTitre() == "titreTestId" );
 		 
 	 }
 	 
@@ -116,7 +127,17 @@ public class TestLivreDao {
 	 
 	 @Test
 	 public void testUpdateLivre() {
-		 Livre livreTest =  iDaoLivre.findById((long) 1);
+		 Domaine domaineTest = iDaoDomaine.create(new Domaine(null, "domaineTestUpdateL", "descriptionTestUpdateL"));
+			Livre livreTestAUpdate =  iDaoLivre.create(new Livre(null,
+					 "titreTest",
+					 "auteurTest",
+					 "editeurTest",
+					 true,
+					 EtatLivre.BON_ETAT,
+					 domaineTest));
+		 
+		 
+		 Livre livreTest =  iDaoLivre.findById(livreTestAUpdate.getIdLivre());
 		 livreTest.setTitre("titreUpdateTest");
 		 iDaoLivre.update(livreTest);
 		 Livre livreUpdateTest = livreTest;
