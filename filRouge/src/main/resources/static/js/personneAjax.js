@@ -38,11 +38,12 @@ function allPersonnes(){
 		bodyElt.innerHTML="";//vider le tableau avant de le re-remplir
 		for(let personne of personnesJs){
 			let row = bodyElt.insertRow(-1);
-			(row.insertCell(0)).innerHTML = personne.prenom;
-			(row.insertCell(1)).innerHTML = personne.nom;
-			(row.insertCell(2)).innerHTML = personne.email;
-			(row.insertCell(3)).innerHTML = personne.telephone;
-			(row.insertCell(4)).innerHTML = personne.adresse;
+			(row.insertCell(0)).innerHTML = personne.idPersonne;
+			(row.insertCell(1)).innerHTML = personne.prenom;
+			(row.insertCell(2)).innerHTML = personne.nom;
+			(row.insertCell(3)).innerHTML = personne.email;
+			(row.insertCell(4)).innerHTML = personne.telephone;
+			(row.insertCell(5)).innerHTML = personne.adresse;
 		}
 	});
 	
