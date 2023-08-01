@@ -1,5 +1,5 @@
 window.onload=function(){
-	allLivres();
+	allPersonnes();
 	(document.getElementById("btnAjout"))
 	   .addEventListener("click",ajouterPersonne);   
 }

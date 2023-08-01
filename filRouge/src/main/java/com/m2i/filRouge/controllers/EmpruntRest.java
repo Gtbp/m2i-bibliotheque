@@ -31,7 +31,7 @@ public class EmpruntRest {
 	
 	@GetMapping("/{idEmprunt}" )
 	public ResponseEntity<?> getEmpruntById(@PathVariable("idEmprunt") Long idEmprunt) {
-	    Emprunt emprunt = iDaoEmprunt.findById(idEmprunt);
+	    Emprunt emprunt = iDaoEmprunt.findById(idEmprunt).orElse(null);
 	    if(emprunt!=null)
 	    	return new ResponseEntity<Emprunt>(emprunt, HttpStatus.OK);
 	    else
@@ -51,7 +51,7 @@ public class EmpruntRest {
 	
 	@PostMapping("")
 	public Emprunt postEmprunt(@RequestBody Emprunt nouveauEmprunt) {
-		Emprunt emprunt = iDaoEmprunt.create(nouveauEmprunt);
+		Emprunt emprunt = iDaoEmprunt.save(nouveauEmprunt);
 		return emprunt; //on retourne le emprunt avec clef primaire auto_incrémentée
 	}
 	
@@ -63,7 +63,7 @@ public class EmpruntRest {
 		    Long idEmpruntToUpdate = idEmprunt!=null ? idEmprunt : emprunt.getIdEmprunt();
 		   
 		    Emprunt empruntToUpdate = 
-		    		idEmpruntToUpdate!=null ? iDaoEmprunt.findById(idEmpruntToUpdate) : null;
+		    		idEmpruntToUpdate!=null ? iDaoEmprunt.findById(idEmpruntToUpdate).orElse(null) : null;
 		    
 		    if(empruntToUpdate==null)
 		    	return new ResponseEntity<String>("{ \"err\" : \"Emprunt not found\"}" ,
@@ -71,18 +71,18 @@ public class EmpruntRest {
 		    
 		    if(emprunt.getIdEmprunt()==null)
 		    	emprunt.setIdEmprunt(idEmpruntToUpdate);
-		    iDaoEmprunt.update(emprunt);
+		    iDaoEmprunt.save(emprunt);
 			return new ResponseEntity<Emprunt>(emprunt , HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{idEmprunt}")
 	public ResponseEntity<?> deleteEmprunt(@PathVariable("idEmprunt") Long idEmprunt) {
-		    Emprunt empruntToDelete = iDaoEmprunt.findById(idEmprunt);
+		    Emprunt empruntToDelete = iDaoEmprunt.findById(idEmprunt).orElse(null);
 		    if(empruntToDelete==null)
 		    	return new ResponseEntity<String>("{ \"err\" : \"Emprunt not found\"}" ,
 		    			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
 		    
-		    iDaoEmprunt.delete(idEmprunt);
+		    iDaoEmprunt.deleteById(idEmprunt);
 		    return new ResponseEntity<String>("{ \"done\" : \"Emprunt deleted\"}" ,HttpStatus.OK); 
 		    
 		}

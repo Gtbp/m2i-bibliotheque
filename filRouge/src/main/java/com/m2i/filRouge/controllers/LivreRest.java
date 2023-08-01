@@ -31,7 +31,7 @@ public class LivreRest {
 	
 	@GetMapping("/{idLivre}" )
 	public ResponseEntity<?> getLivreById(@PathVariable("idLivre") Long idLivre) {
-	    Livre livre = iDaoLivre.findById(idLivre);
+	    Livre livre = iDaoLivre.findById(idLivre).orElse(null);
 	    if(livre!=null)
 	    	return new ResponseEntity<Livre>(livre, HttpStatus.OK);
 	    else
@@ -51,7 +51,7 @@ public class LivreRest {
 	
 	@PostMapping("")
 	public Livre postLivre(@RequestBody Livre nouveauLivre) {
-		Livre livre = iDaoLivre.create(nouveauLivre);
+		Livre livre = iDaoLivre.save(nouveauLivre);
 		return livre; //on retourne le livre avec clef primaire auto_incrémentée
 	}
 	
@@ -63,7 +63,7 @@ public class LivreRest {
 		    Long idLivreToUpdate = idLivre!=null ? idLivre : livre.getIdLivre();
 		   
 		    Livre livreToUpdate = 
-		    		idLivreToUpdate!=null ? iDaoLivre.findById(idLivreToUpdate) : null;
+		    		idLivreToUpdate!=null ? iDaoLivre.findById(idLivreToUpdate).orElse(null) : null;
 		    
 		    if(livreToUpdate==null)
 		    	return new ResponseEntity<String>("{ \"err\" : \"Livre not found\"}" ,
@@ -71,18 +71,18 @@ public class LivreRest {
 		    
 		    if(livre.getIdLivre()==null)
 		    	livre.setIdLivre(idLivreToUpdate);
-		    iDaoLivre.update(livre);
+		    iDaoLivre.save(livre);
 			return new ResponseEntity<Livre>(livre , HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{idLivre}")
 	public ResponseEntity<?> deleteLivre(@PathVariable("idLivre") Long idLivre) {
-		    Livre livreToDelete = iDaoLivre.findById(idLivre);
+		    Livre livreToDelete = iDaoLivre.findById(idLivre).orElse(null);
 		    if(livreToDelete==null)
 		    	return new ResponseEntity<String>("{ \"err\" : \"Livre not found\"}" ,
 		    			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
 		    
-		    iDaoLivre.delete(idLivre);
+		    iDaoLivre.deleteById(idLivre);
 		    return new ResponseEntity<String>("{ \"done\" : \"Livre deleted\"}" ,HttpStatus.OK); 
 		    
 		}
