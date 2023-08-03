@@ -16,5 +16,12 @@ public class ServiceLivre extends AbstractGenericService<Livre, Long, DtoLivre> 
 		super(dao);
 	}
 
+	@Override
+	public Class<DtoLivre> getDtoClass() {
+		return DtoLivre.class;
+	}
+
+	
+
 	
 }
