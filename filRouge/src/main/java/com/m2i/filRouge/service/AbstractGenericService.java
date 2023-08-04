@@ -32,7 +32,6 @@ public abstract class AbstractGenericService<E,ID,DTO> implements GenericService
 			throw new NotFoundException("Entity not found for id "+id);
 		}
 		
-		
 	}
 
 	@Override
