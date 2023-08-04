@@ -56,6 +56,15 @@ public class Livre {
 		this.domaine = domaine;
 	}
 
+	public Livre(Long idLivre, String titre, String auteur, String editeur, Boolean dispo, EtatLivre etat) {
+		this.idLivre = idLivre;
+		this.titre = titre;
+		this.auteur = auteur;
+		this.editeur = editeur;
+		this.dispo = dispo;
+		this.etat = etat;
+	}
+
 	
 	
 	

@@ -34,7 +34,7 @@ public class TestLivreDao {
 	
 	 @Test
 	 public void testCreateDomaine() {
-		Domaine domaineTestCreate = iDaoDomaine.create(new Domaine(null, "domaineTestCreate", "descriptionTestCreate"));
+		Domaine domaineTestCreate = iDaoDomaine.save(new Domaine(null, "domaineTestCreate", "descriptionTestCreate"));
 		 
 		 assertTrue(domaineTestCreate.getIdDomaine() > 0 
 				 && domaineTestCreate.getNom()=="domaineTestCreate" 
@@ -45,7 +45,7 @@ public class TestLivreDao {
 	 @Test
 	 public void testFindDomaineById() {
 
-		Domaine domaineTestById =  iDaoDomaine.findById((long) 1);
+		Domaine domaineTestById =  iDaoDomaine.findById((long) 1).orElse(null);
 		 assertTrue(domaineTestById.getIdDomaine() == 1);
 		 
 	 }
@@ -59,10 +59,10 @@ public class TestLivreDao {
 	 @Test
 	 public void testUpdateDomaine() {
 		 
-		 Domaine domaineTestAUpdate = iDaoDomaine.create(new Domaine(null, "domaineTestAUpdate", "descAUpdate"));
-		 Domaine domaineTest =  iDaoDomaine.findById(domaineTestAUpdate.getIdDomaine());
+		 Domaine domaineTestAUpdate = iDaoDomaine.save(new Domaine(null, "domaineTestAUpdate", "descAUpdate"));
+		 Domaine domaineTest =  iDaoDomaine.findById(domaineTestAUpdate.getIdDomaine()).orElse(null);
 		 domaineTest.setNom("domaineTestUpdated");
-		 iDaoDomaine.update(domaineTest);
+		 iDaoDomaine.save(domaineTest);
 		 Domaine domaineUpdateTest = domaineTest;
 		 assertTrue(domaineUpdateTest.getNom() == "domaineTestUpdated" );
 		 
@@ -88,8 +88,8 @@ public class TestLivreDao {
 	
 	 @Test
 	 public void testCreateLivre() {
-		Domaine domaineTest = iDaoDomaine.create(new Domaine(null, "domaineTest", "descriptionTest"));
-		Livre livreTest =  iDaoLivre.create(new Livre(null,
+		Domaine domaineTest = iDaoDomaine.save(new Domaine(null, "domaineTest", "descriptionTest"));
+		Livre livreTest =  iDaoLivre.save(new Livre(null,
 				 "titreTest",
 				 "auteurTest",
 				 "editeurTest",
@@ -107,8 +107,8 @@ public class TestLivreDao {
 	 @Test
 	 public void testFindLivreById() {
 		 
-		 Domaine domaineTest = iDaoDomaine.create(new Domaine(null, "domaineTest", "descriptionTest"));
-			Livre livreTestFindById =  iDaoLivre.create(new Livre(null,
+		 Domaine domaineTest = iDaoDomaine.save(new Domaine(null, "domaineTest", "descriptionTest"));
+			Livre livreTestFindById =  iDaoLivre.save(new Livre(null,
 					 "titreTestId",
 					 "auteurTestId",
 					 "editeurTestId",
@@ -129,8 +129,8 @@ public class TestLivreDao {
 	 
 	 @Test
 	 public void testUpdateLivre() {
-		 Domaine domaineTest = iDaoDomaine.create(new Domaine(null, "domaineTestUpdateL", "descriptionTestUpdateL"));
-			Livre livreTestAUpdate =  iDaoLivre.create(new Livre(null,
+		 Domaine domaineTest = iDaoDomaine.save(new Domaine(null, "domaineTestUpdateL", "descriptionTestUpdateL"));
+			Livre livreTestAUpdate =  iDaoLivre.save(new Livre(null,
 					 "titreTest",
 					 "auteurTest",
 					 "editeurTest",
@@ -139,9 +139,9 @@ public class TestLivreDao {
 					 domaineTest));
 		 
 		 
-		 Livre livreTest =  iDaoLivre.findById(livreTestAUpdate.getIdLivre());
+		 Livre livreTest =  iDaoLivre.findById(livreTestAUpdate.getIdLivre()).orElse(null);
 		 livreTest.setTitre("titreUpdateTest");
-		 iDaoLivre.update(livreTest);
+		 iDaoLivre.save(livreTest);
 		 Livre livreUpdateTest = livreTest;
 		 assertTrue(livreUpdateTest.getTitre() == "titreUpdateTest" );
 		 
@@ -149,8 +149,8 @@ public class TestLivreDao {
 	 
 	 @Test
 	 public void testDeleteLivre() {
-		 Domaine domaineTest = iDaoDomaine.findById((long) 1);
-		 Livre livreDeleteTest = iDaoLivre.create(new Livre(null,
+		 Domaine domaineTest = iDaoDomaine.findById((long) 1).orElse(null);
+		 Livre livreDeleteTest = iDaoLivre.save(new Livre(null,
 				 "titreDeleteTest",
 				 "auteurDeleteTest",
 				 "editeurDeleteTest",
@@ -158,9 +158,9 @@ public class TestLivreDao {
 				 EtatLivre.BON_ETAT,
 				 domaineTest));
 		
-		iDaoLivre.delete(livreDeleteTest.getIdLivre());
+		iDaoLivre.deleteById(livreDeleteTest.getIdLivre());
 		
-		livreDeleteTest = iDaoLivre.findById(livreDeleteTest.getIdLivre());
+		livreDeleteTest = iDaoLivre.findById(livreDeleteTest.getIdLivre()).orElse(null);
 
 		 assertTrue(livreDeleteTest == null);
 
