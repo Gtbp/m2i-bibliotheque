@@ -9,6 +9,9 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class DtoLivre {
 
+	
+	// Dto simplifié sans domaine ?
+	
 	private Long idLivre;
 	private String titre;
 	private String auteur;

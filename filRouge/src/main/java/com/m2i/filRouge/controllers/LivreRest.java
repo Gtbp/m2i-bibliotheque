@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+	
+import com.m2i.filRouge.converter.GenericConverter;
+import com.m2i.filRouge.dto.DtoLivre;
 import com.m2i.filRouge.entities.Livre;
-import com.m2i.filRouge.idao.IDaoLivre;
+import com.m2i.filRouge.service.ServiceLivre;
 
 @RestController
 @RequestMapping(value="/api-bibliotheque/livre", headers="Accept=application/json")
@@ -25,15 +27,16 @@ import com.m2i.filRouge.idao.IDaoLivre;
 public class LivreRest {
 
 	@Autowired
-	private IDaoLivre iDaoLivre; 
+	private ServiceLivre serviceLivre; 
+	
 	
 	// display one book
 	
 	@GetMapping("/{idLivre}" )
 	public ResponseEntity<?> getLivreById(@PathVariable("idLivre") Long idLivre) {
-	    Livre livre = iDaoLivre.findById(idLivre).orElse(null);
-	    if(livre!=null)
-	    	return new ResponseEntity<Livre>(livre, HttpStatus.OK);
+	    DtoLivre dtoLivre = serviceLivre.findDtoById(idLivre);
+	    if(dtoLivre!=null)
+	    	return new ResponseEntity<DtoLivre>(dtoLivre, HttpStatus.OK);
 	    else
 	    	return new ResponseEntity<String>("{ \"err\" : \"livre not found\"}" ,
 	    			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
@@ -41,48 +44,51 @@ public class LivreRest {
 	
 	// book list
 	@GetMapping("")
-	public List<Livre> getLivres(){
-		return iDaoLivre.findAll();
+	public List<DtoLivre> getLivres(){
+		return serviceLivre.findAllDto();
 	}
 	
 	//exemple de fin d'URL: ./api-biblio/livre
 	//appelé en mode POST avec dans la partie invisible "body" de la requête:
 	// { "idLivre" : null , "titre" : "titreRest" , "auteur" : "auteurRest" , "editeur" : "editeurRest" , "dispo" : "true" , "etat": "BON_ETAT"  , "domaine" : 1 }
 	
-	@PostMapping("")
-	public Livre postLivre(@RequestBody Livre nouveauLivre) {
-		Livre livre = iDaoLivre.save(nouveauLivre);
-		return livre; //on retourne le livre avec clef primaire auto_incrémentée
+	@PostMapping("")	
+	public DtoLivre postLivre(@RequestBody DtoLivre nouveauLivre) {
+		Livre livre = serviceLivre.save(GenericConverter.map(nouveauLivre, Livre.class));
+		return GenericConverter.map(livre, DtoLivre.class); //on retourne le livre avec clef primaire auto_incrémentée
 	}
+	
+	// Update
 	
 	
 	@PutMapping({"", "/{idLivre}" })
-	public ResponseEntity<?> putLivre(@RequestBody Livre livre , 
+	public ResponseEntity<?> putLivre(@RequestBody DtoLivre dtoLivre , 
 			      @PathVariable(value="idLivre",required = false ) Long idLivre) {
 		
-		    Long idLivreToUpdate = idLivre!=null ? idLivre : livre.getIdLivre();
+		    Long idLivreToUpdate = idLivre!=null ? idLivre : dtoLivre.getIdLivre();
 		   
-		    Livre livreToUpdate = 
-		    		idLivreToUpdate!=null ? iDaoLivre.findById(idLivreToUpdate).orElse(null) : null;
 		    
-		    if(livreToUpdate==null)
+		    if(!serviceLivre.existById(idLivreToUpdate))
 		    	return new ResponseEntity<String>("{ \"err\" : \"Livre not found\"}" ,
  			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
 		    
-		    if(livre.getIdLivre()==null)
-		    	livre.setIdLivre(idLivreToUpdate);
-		    iDaoLivre.save(livre);
-			return new ResponseEntity<Livre>(livre , HttpStatus.OK);
+		    if(dtoLivre.getIdLivre()==null)
+		    	dtoLivre.setIdLivre(idLivreToUpdate);
+		    serviceLivre.save(GenericConverter.map(dtoLivre, Livre.class));
+			return new ResponseEntity<DtoLivre>(dtoLivre , HttpStatus.OK);
 	}
+	
+	
+	// Delete
 	
 	@DeleteMapping("/{idLivre}")
 	public ResponseEntity<?> deleteLivre(@PathVariable("idLivre") Long idLivre) {
-		    Livre livreToDelete = iDaoLivre.findById(idLivre).orElse(null);
-		    if(livreToDelete==null)
+		   
+		    if(!serviceLivre.existById(idLivre))
 		    	return new ResponseEntity<String>("{ \"err\" : \"Livre not found\"}" ,
 		    			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
 		    
-		    iDaoLivre.deleteById(idLivre);
+		    serviceLivre.deleteById(idLivre);
 		    return new ResponseEntity<String>("{ \"done\" : \"Livre deleted\"}" ,HttpStatus.OK); 
 		    
 		}
