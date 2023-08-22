@@ -1,28 +1,27 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>livre Ajax</title>
+<title>personne Ajax</title>
 <script src="js/my_ajax_util.js"></script>
-<script src="js/empruntAjax.js"></script>
+<script src="js/lecteurAjax.js"></script>
 </head>
 <body>
 	
 	
-	date de fin : <input id="inputDateFin" /> <br/>
-	type : <input id="inputType" /> <br/>
-	lecteur : <input id="inputLecteur" /> <br/>
-	livre : <input id="inputLivre" /> <br/>
-	
-	<button id="btnAjout">ajouter emprunt (post)</button>
+	prenom: <input id="inputPrenom" /> <br/>
+	nom: <input id="inputNom" /> <br/>
+	email: <input id="inputEmail" /> <br/>
+	telephone: <input id="inputTelephone" /> <br/>
+	adresse: <input id="inputAdresse" /> <br/>
+	<button id="btnAjout">ajouter lecteur (post)</button>
 	<hr/>
 	
     <table border="1">
 		
 	   <thead>
-		<tr><th>idEmprunt</th><th>date debut</th><th>date fin</th><th>type</th><th>nom lecteur</th><th>titre livre</th></tr>
-		
+		<tr><th>idPersonne</th><th>prenom</th><th>nom</th><th>email</th><th>telephone</th><th>adresse</th></tr>
 	   </thead>
 	   <tbody id="table_body">
 		   <!-- <tr><td>1</td><td>compteA</td><td>50.0</td></tr> -->

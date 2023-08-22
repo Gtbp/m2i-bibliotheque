@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 	
 import com.m2i.filRouge.converter.GenericConverter;
+import com.m2i.filRouge.converter.MyConverter;
 import com.m2i.filRouge.dto.DtoLivre;
 import com.m2i.filRouge.entities.Livre;
 import com.m2i.filRouge.service.ServiceLivre;
@@ -61,7 +62,7 @@ public class LivreRest {
 	
 	@PostMapping("")	
 	public DtoLivre postLivre(@RequestBody DtoLivre nouveauLivre) {
-		Livre livre = serviceLivre.save(GenericConverter.map(nouveauLivre, Livre.class));
+		Livre livre = serviceLivre.save(MyConverter.map(nouveauLivre, Livre.class));
 		return GenericConverter.map(livre, DtoLivre.class); //on retourne le livre avec clef primaire auto_incrémentée
 	}
 	

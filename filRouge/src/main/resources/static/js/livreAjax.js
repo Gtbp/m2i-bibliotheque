@@ -16,7 +16,7 @@ function ajouterLivre(){
 	                 editeur : editeur, 
 	                 dispo : true, 
 	                 etat : "BON_ETAT", 
-	                 domaine : 1        
+	                 domaine : 1       
 	                  };
 	let livreJson = JSON.stringify(livreJs) ;  
 	let wsUrl = "./api-bibliotheque/livre";   
@@ -44,7 +44,7 @@ function allLivres(){
 			(row.insertCell(3)).innerHTML = livre.editeur;
 			(row.insertCell(4)).innerHTML = livre.dispo;
 			(row.insertCell(5)).innerHTML = livre.etat;
-			(row.insertCell(6)).innerHTML = livre.domaine.nom;
+			(row.insertCell(6)).innerHTML = livre.domaine;
 		}
 	});
 	

@@ -42,8 +42,8 @@ function allEmprunts(){
 			(row.insertCell(1)).innerHTML = emprunt.date_debut;
 			(row.insertCell(2)).innerHTML = emprunt.date_fin;
 			(row.insertCell(3)).innerHTML = emprunt.type;
-			(row.insertCell(4)).innerHTML = emprunt.lecteur.prenom;
-			(row.insertCell(5)).innerHTML = emprunt.livre.titre;
+			(row.insertCell(4)).innerHTML = emprunt.lecteur;
+			(row.insertCell(5)).innerHTML = emprunt.livre;
 			
 		}
 	});

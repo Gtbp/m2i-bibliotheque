@@ -18,9 +18,11 @@ public class DtoLivre {
 	private String editeur;
 	private Boolean dispo;
 	private EtatLivre etat = EtatLivre.BON_ETAT;
+	private String domaine;
 	
 	
-	public DtoLivre(Long idLivre, String titre, String auteur, String editeur, Boolean dispo, EtatLivre etat) {
+	
+	public DtoLivre(Long idLivre, String titre, String auteur, String editeur, Boolean dispo, EtatLivre etat, String domaine) {
 		super();
 		this.idLivre = idLivre;
 		this.titre = titre;
@@ -28,7 +30,10 @@ public class DtoLivre {
 		this.editeur = editeur;
 		this.dispo = dispo;
 		this.etat = etat;
+		this.domaine = domaine;
 	}
+	
+	
 	
 	
 }
