@@ -40,7 +40,7 @@ public class TestPersonneService {
 	public void testCreatePersonne() {
 		Personne personneTestCreate = new Personne(null, "prenomTest", "nomTest", "emailTest", "telephoneTest",
 				"adresseTest");
-		iDaoPersonne.save(personneTestCreate);
+		servicePersonne.save(personneTestCreate);
 		logger.debug("personneTestCreate = " + personneTestCreate.getPrenom());
 
 		assertTrue(personneTestCreate.getIdPersonne() > 0 && personneTestCreate.getPrenom() == "prenomTest"
@@ -51,22 +51,22 @@ public class TestPersonneService {
 
 	@Test
 	public void testFindPersonneById() {
-		Personne personneTestFindById = iDaoPersonne.findById((long) 1).orElse(null);
+		Personne personneTestFindById = servicePersonne.findById((long) 1);
 		logger.debug("personneTestFindById = " + personneTestFindById.getIdPersonne());
 		assertTrue(personneTestFindById.getIdPersonne() == 1);
 	}
 
 	@Test
 	public void testFindAllPersonnes() {
-		List<Personne> personnes = iDaoPersonne.findAll();
+		List<Personne> personnes = servicePersonne.findAll();
 		assertTrue(personnes.size() > 0);
 	}
 
 	@Test
 	public void testUpdatePersonne() {
-		Personne personneTestUpdate = iDaoPersonne.findById((long) 1).orElse(null);
+		Personne personneTestUpdate = servicePersonne.findById((long) 1);
 		personneTestUpdate.setPrenom("prenomUpdateTest");
-		iDaoPersonne.save(personneTestUpdate);
+		servicePersonne.save(personneTestUpdate);
 
 		logger.debug("personneTestUpdate = " + personneTestUpdate.getPrenom());
 		assertEquals("prenomUpdateTest", personneTestUpdate.getPrenom());
@@ -75,11 +75,11 @@ public class TestPersonneService {
 	@Test
 	public void testDeletePersonne() {
 		Personne personne = new Personne(null, "", "", "", "", "");
-		iDaoPersonne.save(personne);
-		Personne personneTestDelete = iDaoPersonne.findById(personne.getIdPersonne()).orElse(null);
-		iDaoPersonne.deleteById(personneTestDelete.getIdPersonne());
+		servicePersonne.save(personne);
+		Personne personneTestDelete = servicePersonne.findById(personne.getIdPersonne());
+		servicePersonne.deleteById(personneTestDelete.getIdPersonne());
 
-		personneTestDelete = iDaoPersonne.findById(personneTestDelete.getIdPersonne()).orElse(null);
+		personneTestDelete = servicePersonne.findById(personneTestDelete.getIdPersonne());
 		assertTrue(personneTestDelete == null);
 
 	}
@@ -89,7 +89,7 @@ public class TestPersonneService {
 	public void testCreateLecteur() {
 		Lecteur lecteurTestCreate = new Lecteur(null, "prenomLecteurTest", "nomLecteurTest", "emailLecteurTest",
 				"telephoneLecteurTest", "adresseLecteurTest");
-		iDaoLecteur.save(lecteurTestCreate);
+		serviceLecteur.save(lecteurTestCreate);
 		logger.debug("lecteurTestCreate = " + lecteurTestCreate.getPrenom());
 
 		assertTrue(lecteurTestCreate.getIdPersonne() > 0 && lecteurTestCreate.getPrenom() == "prenomLecteurTest"
@@ -103,8 +103,8 @@ public class TestPersonneService {
 	public void testFindLecteurById() {
 		Lecteur lecteurTestId = new Lecteur(null, "prenomLecteurTestId", "nomLecteurTestId", "emailLecteurTestId",
 				"telephoneLecteurTestId", "adresseLecteurTestId");
-		iDaoLecteur.save(lecteurTestId);
-		Lecteur lecteurTestFindById = iDaoLecteur.findById(lecteurTestId.getIdPersonne()).orElse(null);
+		serviceLecteur.save(lecteurTestId);
+		Lecteur lecteurTestFindById = serviceLecteur.findById(lecteurTestId.getIdPersonne());
 		logger.debug("lecteurTestFindById = " + lecteurTestFindById.getIdPersonne());
 		assertEquals( "prenomLecteurTestId",lecteurTestFindById.getPrenom());
 
@@ -112,8 +112,8 @@ public class TestPersonneService {
 
 	@Test
 	public void testFindAllLecteurs() {
-		List<Lecteur> lecteurs = iDaoLecteur.findAll();
-		iDaoLecteur.findAll();
+		List<Lecteur> lecteurs = serviceLecteur.findAll();
+		serviceLecteur.findAll();
 		assertTrue(lecteurs.size() > 0);
 	}
 
@@ -121,11 +121,11 @@ public class TestPersonneService {
 	public void testUpdateLecteur() {
 		Lecteur lecteurTestAUpdate = new Lecteur(null, "prenomLecteurTestUpdate", "nomLecteurTestUpdate", "emailLecteurTestUpdate",
 				"telephoneLecteurTestUpdate", "adresseLecteurTestUpdate");
-		iDaoLecteur.save(lecteurTestAUpdate);
+		serviceLecteur.save(lecteurTestAUpdate);
 		
-		Lecteur lecteurTestUpdate = iDaoLecteur.findById(lecteurTestAUpdate.getIdPersonne()).orElse(null);
+		Lecteur lecteurTestUpdate = serviceLecteur.findById(lecteurTestAUpdate.getIdPersonne());
 		lecteurTestUpdate.setPrenom("lecteurUpdateTest");
-		iDaoLecteur.save(lecteurTestUpdate);
+		serviceLecteur.save(lecteurTestUpdate);
 
 		logger.debug("lecteurTestUpdate = " + lecteurTestUpdate.getPrenom());
 		assertEquals("lecteurUpdateTest", lecteurTestUpdate.getPrenom());
@@ -135,11 +135,11 @@ public class TestPersonneService {
 	@Test
 	public void testDeleteLecteur() {
 		Lecteur lecteur = new Lecteur(null, "", "", "", "", "");
-		iDaoLecteur.save(lecteur);
-		Lecteur lecteurTestDelete = iDaoLecteur.findById(lecteur.getIdPersonne()).orElse(null);
+		serviceLecteur.save(lecteur);
+		Lecteur lecteurTestDelete = serviceLecteur.findById(lecteur.getIdPersonne());
 
-		iDaoLecteur.deleteById(lecteurTestDelete.getIdPersonne());
-		lecteurTestDelete = iDaoLecteur.findById(lecteurTestDelete.getIdPersonne()).orElse(null);
+		serviceLecteur.deleteById(lecteurTestDelete.getIdPersonne());
+		lecteurTestDelete = serviceLecteur.findById(lecteurTestDelete.getIdPersonne());
 		assertTrue(lecteurTestDelete == null);
 
 	}
@@ -155,7 +155,7 @@ public class TestPersonneService {
 				"adresseAdminTest",
 				"usernameAdminTest",
 				"passwordAdminTest");
-		iDaoAdmin.save(adminTestCreate);
+		serviceAdmin.save(adminTestCreate);
 		logger.debug("adminTestCreate = " + adminTestCreate.getPrenom());
 
 		assertTrue(adminTestCreate.getIdPersonne() > 0 && adminTestCreate.getUsername() == "usernameAdminTest"
@@ -172,17 +172,17 @@ public class TestPersonneService {
 				"adresseAdminTestId",
 				"usernameAdminTestId",
 				"passwordAdminTestId");
-		iDaoAdmin.save(TestFindId);
+		serviceAdmin.save(TestFindId);
 		
-		Administrateur adminTestFindById = iDaoAdmin.findById(TestFindId.getIdPersonne()).orElse(null);
+		Administrateur adminTestFindById = serviceAdmin.findById(TestFindId.getIdPersonne());
 		assertEquals("usernameAdminTestId", adminTestFindById.getUsername());
 
 	}
 
 	@Test
 	public void testFindAllAdmins() {
-		List<Administrateur> admins = iDaoAdmin.findAll();
-		iDaoAdmin.findAll();
+		List<Administrateur> admins = serviceAdmin.findAll();
+		serviceAdmin.findAll();
 		assertTrue(admins.size() > 0);
 	}
 
@@ -195,11 +195,11 @@ public class TestPersonneService {
 				"adresseAdminTestUpdate",
 				"usernameAdminTestUpdate",
 				"passwordAdminTestUpdate");
-		iDaoAdmin.save(adminToUpdate);
+		serviceAdmin.save(adminToUpdate);
 		
-		Administrateur adminTestUpdate = iDaoAdmin.findById(adminToUpdate.getIdPersonne()).orElse(null);
+		Administrateur adminTestUpdate = serviceAdmin.findById(adminToUpdate.getIdPersonne());
 		adminTestUpdate.setUsername("usernameAdminTestUpdate");
-		iDaoAdmin.save(adminTestUpdate);
+		serviceAdmin.save(adminTestUpdate);
 
 		logger.debug("adminTestUpdate = " + adminTestUpdate.getUsername());
 		assertEquals("usernameAdminTestUpdate", adminTestUpdate.getUsername());
@@ -215,11 +215,11 @@ public class TestPersonneService {
 				"adresseAdminTest",
 				"usernameAdminTest",
 				"passwordAdminTest");
-		iDaoAdmin.save(admin);
-		Administrateur adminTestDelete = iDaoAdmin.findById(admin.getIdPersonne()).orElse(null);
+		serviceAdmin.save(admin);
+		Administrateur adminTestDelete = serviceAdmin.findById(admin.getIdPersonne());
 		
-		iDaoAdmin.deleteById(adminTestDelete.getIdPersonne());
-		adminTestDelete = iDaoAdmin.findById(adminTestDelete.getIdPersonne()).orElse(null);
+		serviceAdmin.deleteById(adminTestDelete.getIdPersonne());
+		adminTestDelete = serviceAdmin.findById(adminTestDelete.getIdPersonne());
 		assertTrue(adminTestDelete == null);
 		
 	}
