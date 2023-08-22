@@ -32,7 +32,6 @@ public class LivreRest {
 	
 	// display one book (with ExceptionHandler)
 	
-	
 	@GetMapping("/{idLivre}" )
 	public DtoLivre getLivreById(@PathVariable("idLivre") Long idLivre) {
 	  return serviceLivre.findDtoById(idLivre);  
