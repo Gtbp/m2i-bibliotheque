@@ -43,9 +43,9 @@ public class InitDataSet {
 	 @PostConstruct
 	 public void initData() {
 		 
-		 Domaine domaineAa = iDaoDomaine.create(new Domaine(null, "domaineAa", "descriptionAa"));
+		 Domaine domaineAa = iDaoDomaine.save(new Domaine(null, "domaineAa", "descriptionAa"));
 		 
-		 Livre livreAa = iDaoLivre.create(new Livre(null,
+		 Livre livreAa = iDaoLivre.save(new Livre(null,
 				 "titreAa",
 				 "auteurAa",
 				 "editeurAa",
@@ -53,7 +53,7 @@ public class InitDataSet {
 				 EtatLivre.BON_ETAT,
 				 domaineAa));
 		 
-		 Livre livreBb = iDaoLivre.create(new Livre(null,
+		 Livre livreBb = iDaoLivre.save(new Livre(null,
 				 "titreBb",
 				 "auteurBb",
 				 "editeurBb",
@@ -62,12 +62,12 @@ public class InitDataSet {
 				 domaineAa));
 		 
 		 
-		 Lecteur lecteurAa = iDaoLecteur.create(new Lecteur(null,"Aa", "aa", "aa", "aa", "aa"
+		 Lecteur lecteurAa = iDaoLecteur.save(new Lecteur(null,"Aa", "aa", "aa", "aa", "aa"
 				 ));
-		 Lecteur lecteurBb = iDaoLecteur.create(new Lecteur(null,"bb", "bb", "bb", "bb", "bb"
+		 Lecteur lecteurBb = iDaoLecteur.save(new Lecteur(null,"bb", "bb", "bb", "bb", "bb"
 				 ));
 		 
-		 Administrateur adminAa = iDaoAdmin.create(new Administrateur(null, 
+		 Administrateur adminAa = iDaoAdmin.save(new Administrateur(null, 
 				 "initNameAdmin",
 				 "initSurNameAdmin",
 				 "initEmailAdmin", 
@@ -81,7 +81,7 @@ public class InitDataSet {
 			Date date_fin = new Date();
 			
 			
-		 Emprunt empruntAa = iDaoEmprunt.create(new Emprunt(null,
+		 Emprunt empruntAa = iDaoEmprunt.save(new Emprunt(null,
 				 date_debut,
 				 date_fin,
 				 TypesEmprunt.EFFECTIF,

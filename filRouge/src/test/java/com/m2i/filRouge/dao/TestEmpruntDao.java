@@ -51,7 +51,7 @@ Logger logger = LoggerFactory.getLogger(TestEmpruntDao.class);
 				"editeurTestEmprunt",
 				true,
 				EtatLivre.BON_ETAT,
-				iDaoDomaine.findById((long) 1));
+				iDaoDomaine.findById((long) 1).orElse(null));
 		
 		// create un lecteur de test Emprunt
 		Lecteur lecteurTestEmprunt = new Lecteur(
@@ -63,9 +63,9 @@ Logger logger = LoggerFactory.getLogger(TestEmpruntDao.class);
 				"adresseTestEmprunt");
 		
 		// create en base
-		iDaoLivre.create(livreTestEmprunt);
+		iDaoLivre.save(livreTestEmprunt);
 		logger.debug("livre test emprunt : " + livreTestEmprunt.getIdLivre());
-		iDaoLecteur.create(lecteurTestEmprunt);
+		iDaoLecteur.save(lecteurTestEmprunt);
 		logger.debug("livrelecteur  emprunt : " + lecteurTestEmprunt.getIdPersonne());
 		
 		// create emprunt 
@@ -80,7 +80,7 @@ Logger logger = LoggerFactory.getLogger(TestEmpruntDao.class);
 				lecteurTestEmprunt,
 				livreTestEmprunt);
 		
-		iDaoEmprunt.create(empruntTest);
+		iDaoEmprunt.save(empruntTest);
 		livreTestEmprunt.setDispo(false);
 		
 		
@@ -94,7 +94,7 @@ Logger logger = LoggerFactory.getLogger(TestEmpruntDao.class);
 	
 	@Test
 	public void testFindEmpruntById() {
-		Emprunt empruntTestFindById = iDaoEmprunt.findById((long) 1);
+		Emprunt empruntTestFindById = iDaoEmprunt.findById((long) 1).orElse(null);
 		assertTrue(empruntTestFindById.getIdEmprunt() == 1);
 	}
 	
@@ -106,9 +106,9 @@ Logger logger = LoggerFactory.getLogger(TestEmpruntDao.class);
 	
 	@Test
 	public void testUpdateEmprunt() {
-		Emprunt empruntTest = iDaoEmprunt.findById((long) 1);
+		Emprunt empruntTest = iDaoEmprunt.findById((long) 1).orElse(null);
 		empruntTest.setType(TypesEmprunt.RESERVATION);
-		iDaoEmprunt.update(empruntTest);
+		iDaoEmprunt.save(empruntTest);
 		Emprunt empruntUpdateTest = empruntTest;
 		assertTrue(empruntUpdateTest.getType() == TypesEmprunt.RESERVATION);
 		
@@ -123,11 +123,11 @@ Logger logger = LoggerFactory.getLogger(TestEmpruntDao.class);
 				"editeurTestEmprunt",
 				true,
 				EtatLivre.BON_ETAT,
-				iDaoDomaine.findById((long) 1));
+				iDaoDomaine.findById((long) 1).orElse(null));
 		
-		iDaoLivre.create(livreTestDeleteEmprunt);
+		iDaoLivre.save(livreTestDeleteEmprunt);
 		
-		Lecteur lecteurTestDeleteEmprunt = iDaoLecteur.findById((long) 1);
+		Lecteur lecteurTestDeleteEmprunt = iDaoLecteur.findById((long) 1).orElse(null);
 		Date date_debut = new Date();
 		Date date_fin = new Date();
 		
@@ -137,11 +137,11 @@ Logger logger = LoggerFactory.getLogger(TestEmpruntDao.class);
 				TypesEmprunt.EFFECTIF,
 				lecteurTestDeleteEmprunt,
 				livreTestDeleteEmprunt);
-		iDaoEmprunt.create(empruntDeleteTest);
+		iDaoEmprunt.save(empruntDeleteTest);
 		logger.debug("emprunt a delete avant delete "+ empruntDeleteTest.getIdEmprunt());
-		iDaoEmprunt.delete(empruntDeleteTest.getIdEmprunt());
+		iDaoEmprunt.deleteById(empruntDeleteTest.getIdEmprunt());
 		
-		empruntDeleteTest = iDaoEmprunt.findById(empruntDeleteTest.getIdEmprunt());
+		empruntDeleteTest = iDaoEmprunt.findById(empruntDeleteTest.getIdEmprunt()).orElse(null);
 		assertTrue(empruntDeleteTest == null);
 		
 	}

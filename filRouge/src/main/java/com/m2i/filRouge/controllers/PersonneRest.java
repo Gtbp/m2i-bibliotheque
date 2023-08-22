@@ -26,7 +26,7 @@ public class PersonneRest {
 	
 	@GetMapping("/{idPersonne}")
 	public ResponseEntity<?> getPersonneById(@PathVariable("idPersonne") Long idPersonne) {
-	    Personne personne = iDaoPersonne.findById(idPersonne);
+	    Personne personne = iDaoPersonne.findById(idPersonne).orElse(null);
 	    if(personne!=null)
 	    	return new ResponseEntity<Personne>(personne, HttpStatus.OK);
 	    else
@@ -46,7 +46,7 @@ public class PersonneRest {
 	
 	@PostMapping("")
 	public Personne postPersonne(@RequestBody Personne nouveauPersonne) {
-		Personne personne = iDaoPersonne.create(nouveauPersonne);
+		Personne personne = iDaoPersonne.save(nouveauPersonne);
 		return personne; //on retourne le personne avec clef primaire auto_incrémentée
 	}
 	
@@ -58,7 +58,7 @@ public class PersonneRest {
 		    Long idPersonneToUpdate = idPersonne!=null ? idPersonne : personne.getIdPersonne();
 		   
 		    Personne personneToUpdate = 
-		    		idPersonneToUpdate!=null ? iDaoPersonne.findById(idPersonneToUpdate) : null;
+		    		idPersonneToUpdate!=null ? iDaoPersonne.findById(idPersonneToUpdate).orElse(null) : null;
 		    
 		    if(personneToUpdate==null)
 		    	return new ResponseEntity<String>("{ \"err\" : \"Personne not found\"}" ,
@@ -66,18 +66,18 @@ public class PersonneRest {
 		    
 		    if(personne.getIdPersonne()==null)
 		    	personne.setIdPersonne(idPersonneToUpdate);
-		    iDaoPersonne.update(personne);
+		    iDaoPersonne.save(personne);
 			return new ResponseEntity<Personne>(personne , HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{idPersonne}")
 	public ResponseEntity<?> deletePersonne(@PathVariable("idPersonne") Long idPersonne) {
-		    Personne personneToDelete = iDaoPersonne.findById(idPersonne);
+		    Personne personneToDelete = iDaoPersonne.findById(idPersonne).orElse(null);
 		    if(personneToDelete==null)
 		    	return new ResponseEntity<String>("{ \"err\" : \"Personne not found\"}" ,
 		    			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
 		    
-		    iDaoPersonne.delete(idPersonne);
+		    iDaoPersonne.deleteById(idPersonne);
 		    return new ResponseEntity<String>("{ \"done\" : \"Personne deleted\"}" ,HttpStatus.OK); 
 		    
 		}
