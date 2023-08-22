@@ -30,17 +30,25 @@ public class LivreRest {
 	private ServiceLivre serviceLivre; 
 	
 	
-	// display one book
+	// display one book (with ExceptionHandler)
+	
 	
 	@GetMapping("/{idLivre}" )
-	public ResponseEntity<?> getLivreById(@PathVariable("idLivre") Long idLivre) {
-	    DtoLivre dtoLivre = serviceLivre.findDtoById(idLivre);
-	    if(dtoLivre!=null)
-	    	return new ResponseEntity<DtoLivre>(dtoLivre, HttpStatus.OK);
-	    else
-	    	return new ResponseEntity<String>("{ \"err\" : \"livre not found\"}" ,
-	    			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
+	public DtoLivre getLivreById(@PathVariable("idLivre") Long idLivre) {
+	  return serviceLivre.findDtoById(idLivre);  
 	}
+	
+// display one book without ExceptionHandler	
+//	
+//	@GetMapping("/{idLivre}" )
+//	public ResponseEntity<?> getLivreById(@PathVariable("idLivre") Long idLivre) {
+//	    DtoLivre dtoLivre = serviceLivre.findDtoById(idLivre);
+//	    if(dtoLivre!=null)
+//	    	return new ResponseEntity<DtoLivre>(dtoLivre, HttpStatus.OK);
+//	    else
+//	    	return new ResponseEntity<String>("{ \"err\" : \"livre not found\"}" ,
+//	    			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
+//	}
 	
 	// book list
 	@GetMapping("")
@@ -83,11 +91,6 @@ public class LivreRest {
 	
 	@DeleteMapping("/{idLivre}")
 	public ResponseEntity<?> deleteLivre(@PathVariable("idLivre") Long idLivre) {
-		   
-		    if(!serviceLivre.existById(idLivre))
-		    	return new ResponseEntity<String>("{ \"err\" : \"Livre not found\"}" ,
-		    			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
-		    
 		    serviceLivre.deleteById(idLivre);
 		    return new ResponseEntity<String>("{ \"done\" : \"Livre deleted\"}" ,HttpStatus.OK); 
 		    
