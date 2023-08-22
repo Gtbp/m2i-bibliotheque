@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.m2i.filRouge.converter.GenericConverter;
+import com.m2i.filRouge.dto.DtoEmprunt;
 import com.m2i.filRouge.entities.Emprunt;
-import com.m2i.filRouge.idao.IDaoEmprunt;
+import com.m2i.filRouge.service.ServiceEmprunt;
 
 @RestController
 @RequestMapping(value="/api-bibliotheque/emprunt", headers="Accept=application/json")
@@ -25,64 +27,55 @@ import com.m2i.filRouge.idao.IDaoEmprunt;
 public class EmpruntRest {
 
 	@Autowired
-	private IDaoEmprunt iDaoEmprunt; 
+	private ServiceEmprunt serviceEmprunt; 
 	
-	// display one book
+	// display one emprunt
 	
 	@GetMapping("/{idEmprunt}" )
-	public ResponseEntity<?> getEmpruntById(@PathVariable("idEmprunt") Long idEmprunt) {
-	    Emprunt emprunt = iDaoEmprunt.findById(idEmprunt).orElse(null);
-	    if(emprunt!=null)
-	    	return new ResponseEntity<Emprunt>(emprunt, HttpStatus.OK);
-	    else
-	    	return new ResponseEntity<String>("{ \"err\" : \"emprunt not found\"}" ,
-	    			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
-	}
+	public DtoEmprunt getEmpruntById(@PathVariable("idEmprunt") Long idEmprunt) {
+	   return serviceEmprunt.findDtoById(idEmprunt);
+	   }
 	
-	// book list
+	// emprunt list
 	@GetMapping("")
-	public List<Emprunt> getEmprunts(){
-		return iDaoEmprunt.findAll();
+	public List<DtoEmprunt> getEmprunts(){
+		return serviceEmprunt.findAllDto();
 	}
 	
 	//exemple de fin d'URL: ./api-biblio/emprunt
 	//appelé en mode POST avec dans la partie invisible "body" de la requête:
 	// { "idEmprunt" : null , "titre" : "titreRest" , "auteur" : "auteurRest" , "editeur" : "editeurRest" , "dispo" : "true" , "etat": "BON_ETAT"  , "domaine" : 1 }
 	
+	// Create
 	@PostMapping("")
-	public Emprunt postEmprunt(@RequestBody Emprunt nouveauEmprunt) {
-		Emprunt emprunt = iDaoEmprunt.save(nouveauEmprunt);
-		return emprunt; //on retourne le emprunt avec clef primaire auto_incrémentée
+	public DtoEmprunt postEmprunt(@RequestBody DtoEmprunt nouveauEmprunt) {
+		Emprunt emprunt = serviceEmprunt.save(GenericConverter.map(nouveauEmprunt, Emprunt.class));
+		return GenericConverter.map(emprunt, DtoEmprunt.class); //on retourne le emprunt avec clef primaire auto_incrémentée
 	}
 	
+	// Update
 	
 	@PutMapping({"", "/{idEmprunt}" })
-	public ResponseEntity<?> putEmprunt(@RequestBody Emprunt emprunt , 
+	public ResponseEntity<?> putEmprunt(@RequestBody DtoEmprunt dtoEmprunt , 
 			      @PathVariable(value="idEmprunt",required = false ) Long idEmprunt) {
 		
-		    Long idEmpruntToUpdate = idEmprunt!=null ? idEmprunt : emprunt.getIdEmprunt();
+		    Long idEmpruntToUpdate = idEmprunt!=null ? idEmprunt : dtoEmprunt.getIdEmprunt();
 		   
-		    Emprunt empruntToUpdate = 
-		    		idEmpruntToUpdate!=null ? iDaoEmprunt.findById(idEmpruntToUpdate).orElse(null) : null;
-		    
-		    if(empruntToUpdate==null)
+		    if(!serviceEmprunt.existById(idEmpruntToUpdate))
 		    	return new ResponseEntity<String>("{ \"err\" : \"Emprunt not found\"}" ,
  			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
 		    
-		    if(emprunt.getIdEmprunt()==null)
-		    	emprunt.setIdEmprunt(idEmpruntToUpdate);
-		    iDaoEmprunt.save(emprunt);
-			return new ResponseEntity<Emprunt>(emprunt , HttpStatus.OK);
+		    if(dtoEmprunt.getIdEmprunt()==null)
+		    	dtoEmprunt.setIdEmprunt(idEmpruntToUpdate);
+		    serviceEmprunt.save(GenericConverter.map(dtoEmprunt, Emprunt.class));
+			return new ResponseEntity<DtoEmprunt>(dtoEmprunt , HttpStatus.OK);
 	}
+	
+	// Delete
 	
 	@DeleteMapping("/{idEmprunt}")
 	public ResponseEntity<?> deleteEmprunt(@PathVariable("idEmprunt") Long idEmprunt) {
-		    Emprunt empruntToDelete = iDaoEmprunt.findById(idEmprunt).orElse(null);
-		    if(empruntToDelete==null)
-		    	return new ResponseEntity<String>("{ \"err\" : \"Emprunt not found\"}" ,
-		    			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
-		    
-		    iDaoEmprunt.deleteById(idEmprunt);
+		   serviceEmprunt.deleteById(idEmprunt);
 		    return new ResponseEntity<String>("{ \"done\" : \"Emprunt deleted\"}" ,HttpStatus.OK); 
 		    
 		}
