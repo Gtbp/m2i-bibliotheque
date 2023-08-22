@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import com.m2i.filRouge.converter.GenericConverter;
+import com.m2i.filRouge.converter.MyConverter;
 import com.m2i.filRouge.exception.NotFoundException;
 
 public abstract class AbstractGenericService<E,ID,DTO> implements GenericService<E,ID,DTO>{
@@ -27,7 +28,7 @@ public abstract class AbstractGenericService<E,ID,DTO> implements GenericService
 	public DTO findDtoById(ID id) throws NotFoundException {
 		E e = this.findById(id);
 		if(e != null) {
-			return GenericConverter.map(e,getDtoClass());
+			return MyConverter.map(e,getDtoClass());
 		} else {
 			throw new NotFoundException("Entity not found for id "+id);
 		}
@@ -58,7 +59,7 @@ public abstract class AbstractGenericService<E,ID,DTO> implements GenericService
 	}
 	
 	public List<DTO> findAllDto() {
-		return GenericConverter.map(this.findAll(), getDtoClass());
+		return MyConverter.map(this.findAll(), getDtoClass());
 	}
 	
 	
