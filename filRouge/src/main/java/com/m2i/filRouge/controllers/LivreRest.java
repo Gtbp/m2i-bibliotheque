@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-	
+
 import com.m2i.filRouge.converter.GenericConverter;
-import com.m2i.filRouge.converter.MyConverter;
 import com.m2i.filRouge.dto.DtoLivre;
 import com.m2i.filRouge.entities.Livre;
 import com.m2i.filRouge.service.ServiceLivre;
@@ -38,17 +37,6 @@ public class LivreRest {
 	  return serviceLivre.findDtoById(idLivre);  
 	}
 	
-// display one book without ExceptionHandler	
-//	
-//	@GetMapping("/{idLivre}" )
-//	public ResponseEntity<?> getLivreById(@PathVariable("idLivre") Long idLivre) {
-//	    DtoLivre dtoLivre = serviceLivre.findDtoById(idLivre);
-//	    if(dtoLivre!=null)
-//	    	return new ResponseEntity<DtoLivre>(dtoLivre, HttpStatus.OK);
-//	    else
-//	    	return new ResponseEntity<String>("{ \"err\" : \"livre not found\"}" ,
-//	    			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
-//	}
 	
 	// book list
 	@GetMapping("")
@@ -62,7 +50,7 @@ public class LivreRest {
 	
 	@PostMapping("")	
 	public DtoLivre postLivre(@RequestBody DtoLivre nouveauLivre) {
-		Livre livre = serviceLivre.save(MyConverter.map(nouveauLivre, Livre.class));
+		DtoLivre livre = serviceLivre.saveOrUpdateDtoLivre(nouveauLivre);
 		return GenericConverter.map(livre, DtoLivre.class); //on retourne le livre avec clef primaire auto_incrémentée
 	}
 	

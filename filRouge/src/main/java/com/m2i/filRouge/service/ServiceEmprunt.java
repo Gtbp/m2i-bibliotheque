@@ -40,18 +40,17 @@ public class ServiceEmprunt extends AbstractGenericService<Emprunt, Long, DtoEmp
 	@Override
 	public DtoEmprunt saveOrUpdateDtoEmprunt(DtoEmprunt dtoEmprunt) {
 		Emprunt empruntEntity = MyConverter.map(dtoEmprunt, Emprunt.class);
-		if(dtoEmprunt.getIdEmprunt() != null) {
-			
-			Livre livreEntity = iDaoLivre.findById(dtoEmprunt.getIdEmprunt()).get();
-			Lecteur lecteurEntity = iDaoLecteur.findById(dtoEmprunt.getIdEmprunt()).get();
-			
-			empruntEntity.setLecteur(lecteurEntity);
+		if(dtoEmprunt.getLivre() != null) {
+			Livre livreEntity = iDaoLivre.findById(dtoEmprunt.getLivre()).orElse(null);
 			empruntEntity.setLivre(livreEntity);
-				
 		}
+		if(dtoEmprunt.getLecteur() != null) {
+	Lecteur lecteurEntity = iDaoLecteur.findById(dtoEmprunt.getLecteur()).orElse(null);
+			empruntEntity.setLecteur(lecteurEntity);
+		}
+		
 		iDaoEmprunt.save(empruntEntity);
 		dtoEmprunt.setIdEmprunt(empruntEntity.getIdEmprunt());
-		
 		
 		return dtoEmprunt;
 	}
