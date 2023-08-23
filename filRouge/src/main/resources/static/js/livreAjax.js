@@ -1,13 +1,14 @@
 window.onload=function(){
+	allDomaines();
 	allLivres();
 	(document.getElementById("btnAjout"))
 	   .addEventListener("click",addLivre);
 	  
-	(document.getElementById("btnDelete"))
-	.addEventListener("click",deleteLivre);
+/*	(document.getElementById("btnDelete"))
+	.addEventListener("click",deleteLivre);*/
 	
-	(document.getElementById("btnUpdate"))
-	.addEventListener("click",updateLivre);      
+/*	(document.getElementById("btnUpdate"))
+	.addEventListener("click",updateLivre);*/      
 }
 
 function addLivre(){	
@@ -15,13 +16,13 @@ function addLivre(){
 	let titre = (document.getElementById("inputTitre")).value;
 	let auteur = (document.getElementById("inputAuteur")).value;
 	let editeur = (document.getElementById("inputEditeur")).value;
-	
+	let domaine = (document.getElementById("selectDomaine")).value;
 	let livreJs = { titre : titre,
 	                 auteur : auteur,
 	                 editeur : editeur, 
 	                 dispo : true, 
 	                 etat : "BON_ETAT", 
-	                 domaine : 1       
+	                 domaine : parseInt(domaine)       
 	                  };
 	let livreJson = JSON.stringify(livreJs) ;  
 	let wsUrl = "./api-bibliotheque/livre";   
@@ -30,6 +31,23 @@ function addLivre(){
 		allLivres(); //pour rafraîchir le tableau avec nouveau livre ajoute
 	});         
 }
+
+function allDomaines(){
+	let wsUrl = "./api-bibliotheque/domaine";
+	
+	makeAjaxGetRequest(wsUrl,function(responseJson){
+		let domainesJs = JSON.parse(responseJson);
+	
+		let selectElt = document.getElementById("selectDomaine");
+		for(let domaine of domainesJs){
+			let option = document.createElement("option");
+			option.value = domaine.id;
+			option.innerHTML=JSON.stringify(domaine.nom);
+			selectElt.appendChild(option);
+			}
+			});
+}
+
 	
 function allLivres(){	
 
