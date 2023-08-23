@@ -42,7 +42,7 @@ function allDomaines(){
 		for(let domaine of domainesJs){
 			let option = document.createElement("option");
 			option.value = domaine.id;
-			option.innerHTML=JSON.stringify(domaine.nom);
+			option.innerHTML=domaine.nom;
 			selectElt.appendChild(option);
 			}
 			});

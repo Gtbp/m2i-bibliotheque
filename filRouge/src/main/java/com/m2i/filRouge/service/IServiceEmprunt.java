@@ -7,4 +7,6 @@ public interface IServiceEmprunt extends GenericService<Emprunt,Long,DtoEmprunt>
 
 	// méthode pour rallonger durée de l'emprunt
 	
+	DtoEmprunt saveOrUpdateDtoEmprunt(DtoEmprunt dtoEmprunt);
+	
 }

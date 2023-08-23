@@ -1,4 +1,6 @@
 window.onload=function(){
+	allLivres();
+	allLecteurs();
 	allEmprunts();
 	(document.getElementById("btnAjout"))
 	   .addEventListener("click",ajouterEmprunt);   
@@ -8,15 +10,15 @@ function ajouterEmprunt(){
 	
 	let dateFin = (document.getElementById("inputDateFin")).value;
 	let type = (document.getElementById("inputType")).value;
-	let lecteur = (document.getElementById("inputLecteur")).value;
-	let livre = (document.getElementById("inputLivre")).value;
+	let lecteur = (document.getElementById("selectLecteur")).value;
+	let livre = (document.getElementById("selectLivre")).value;
 	
 	
 	let empruntJs = { date_debut : titre,
 	                 date_fin : dateFin,
 	                 type : type, 
-	                 lecteur : lecteur, 
-	                 livre : livre       
+	                 lecteur : parseInt(lecteur), 
+	                 livre : parseInt(livre)       
 	                  };
 	let empruntJson = JSON.stringify(empruntJs) ;  
 	let wsUrl = "./api-bibliotheque/emprunt";   
@@ -26,6 +28,41 @@ function ajouterEmprunt(){
 	});         
 }
 	
+function allLivres(){
+	
+	let wsUrl = "./api-bibliotheque/livre";
+	
+	makeAjaxGetRequest(wsUrl,function(responseJson){
+		let livresJs = JSON.parse(responseJson);
+	
+		let selectElt = document.getElementById("selectLivre");
+		for(let livre of livresJs){
+			let option = document.createElement("option");
+			option.value = livre.idLivre;
+			option.innerHTML=livre.titre;
+			selectElt.appendChild(option);
+			}
+			});
+	
+}
+
+function allLecteurs(){
+		
+	let wsUrl = "./api-bibliotheque/lecteur";
+	
+	makeAjaxGetRequest(wsUrl,function(responseJson){
+		let lecteursJs = JSON.parse(responseJson);
+	
+		let selectElt = document.getElementById("selectLecteur");
+		for(let lecteur of lecteursJs){
+			let option = document.createElement("option");
+			option.value = lecteur.id;
+			option.innerHTML=lecteur.nom;
+			selectElt.appendChild(option);
+			}
+			});
+}
+
 function allEmprunts(){	
 
 	
@@ -47,7 +84,5 @@ function allEmprunts(){
 			
 		}
 	});
-	
 
-	
 }

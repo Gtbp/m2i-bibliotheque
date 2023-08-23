@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
@@ -30,9 +31,11 @@ public class Emprunt {
 	private Long idEmprunt;
 	
 	@Column(name="date_debut")
+	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy", locale = "fr_FR", timezone="Europe/Paris")
 	private Date date_debut;
 	
 	@Column(name="date_fin")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy", locale = "fr_FR", timezone="Europe/Paris")
 	private Date date_fin;
 	
 	@Column(name="type")
