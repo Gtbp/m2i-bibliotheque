@@ -41,7 +41,7 @@ function allDomaines(){
 		let selectElt = document.getElementById("selectDomaine");
 		for(let domaine of domainesJs){
 			let option = document.createElement("option");
-			option.value = domaine.id;
+			option.value = domaine.idDomaine;
 			option.innerHTML=domaine.nom;
 			selectElt.appendChild(option);
 			}

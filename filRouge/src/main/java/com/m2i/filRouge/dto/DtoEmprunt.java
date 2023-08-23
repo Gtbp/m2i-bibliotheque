@@ -17,18 +17,18 @@ public class DtoEmprunt {
 	private Date date_debut;
 	private Date date_fin;
 	private TypesEmprunt type;
-	private String livre;
-	private String lecteur;
+	private Long lecteur;
+	private Long livre;
 	
 	
-	public DtoEmprunt(Long idEmprunt, Date date_debut, Date date_fin, TypesEmprunt type, String livre, String lecteur) {
+	public DtoEmprunt(Long idEmprunt, Date date_debut, Date date_fin, TypesEmprunt type, Long lecteur, Long livre) {
 		super();
 		this.idEmprunt = idEmprunt;
 		this.date_debut = date_debut;
 		this.date_fin = date_fin;
 		this.type = type;
-		this.livre = livre;
 		this.lecteur = lecteur;
+		this.livre = livre;
 	}
 	
 	

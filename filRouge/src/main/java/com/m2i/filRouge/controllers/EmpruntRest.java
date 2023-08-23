@@ -49,11 +49,7 @@ public class EmpruntRest {
 	// Create
 	@PostMapping("")
 	public DtoEmprunt postEmprunt(@RequestBody DtoEmprunt nouveauEmprunt) {
-		Emprunt emprunt = serviceEmprunt.save(GenericConverter.map(nouveauEmprunt, Emprunt.class));
-		
-	//	Emprunt emprunt = serviceEmprunt.saveOrUpdateDtoEmprunt(GenericConverter.map(nouveauEmprunt, Emprunt.class));
-		
-		
+		DtoEmprunt emprunt = serviceEmprunt.saveOrUpdateDtoEmprunt(nouveauEmprunt);
 		return GenericConverter.map(emprunt, DtoEmprunt.class); //on retourne le emprunt avec clef primaire auto_incrémentée
 		
 		 

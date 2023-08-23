@@ -8,19 +8,21 @@ window.onload=function(){
 
 function ajouterEmprunt(){	
 	
+	const today = new Date();
 	let dateFin = (document.getElementById("inputDateFin")).value;
-	let type = (document.getElementById("inputType")).value;
+	let type = (document.getElementById("selectType")).value;
 	let lecteur = (document.getElementById("selectLecteur")).value;
 	let livre = (document.getElementById("selectLivre")).value;
 	
 	
-	let empruntJs = { date_debut : titre,
+	let empruntJs = { date_debut : today,
 	                 date_fin : dateFin,
 	                 type : type, 
 	                 lecteur : parseInt(lecteur), 
-	                 livre : parseInt(livre)       
+	                 livre : parseInt(livre)    
 	                  };
 	let empruntJson = JSON.stringify(empruntJs) ;  
+	console.log(empruntJson);
 	let wsUrl = "./api-bibliotheque/emprunt";   
 	makeAjaxPostRequest(wsUrl,empruntJson,function (responseJson){
 		console.log("responseJson="+responseJson);
@@ -39,7 +41,7 @@ function allLivres(){
 		for(let livre of livresJs){
 			let option = document.createElement("option");
 			option.value = livre.idLivre;
-			option.innerHTML=livre.titre;
+			option.innerHTML=livre.idLivre;
 			selectElt.appendChild(option);
 			}
 			});
@@ -56,7 +58,7 @@ function allLecteurs(){
 		let selectElt = document.getElementById("selectLecteur");
 		for(let lecteur of lecteursJs){
 			let option = document.createElement("option");
-			option.value = lecteur.id;
+			option.value = lecteur.idPersonne;
 			option.innerHTML=lecteur.nom;
 			selectElt.appendChild(option);
 			}

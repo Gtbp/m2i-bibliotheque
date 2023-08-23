@@ -21,7 +21,7 @@ public class MyConverter extends GenericConverter {
 						sourceLivre.getEditeur(),
 						sourceLivre.getDispo(),
 						sourceLivre.getEtat(),
-						sourceLivre.getDomaine().getNom()
+						sourceLivre.getDomaine().getIdDomaine()
 						);
 				
 			return	GenericConverter.map(dtoLivre,targetClass);
@@ -34,8 +34,8 @@ public class MyConverter extends GenericConverter {
 						sourceEmprunt.getDate_debut(),
 						sourceEmprunt.getDate_fin(),
 						sourceEmprunt.getType(),
-						sourceEmprunt.getLivre().getTitre(),
-						sourceEmprunt.getLecteur().getNom()
+						sourceEmprunt.getLivre().getIdLivre(),
+						sourceEmprunt.getLecteur().getIdPersonne()
 						);
 				
 			
