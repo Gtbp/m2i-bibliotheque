@@ -1,5 +1,6 @@
 package com.m2i.filRouge.dto;
 
+import com.m2i.filRouge.entities.Domaine;
 import com.m2i.filRouge.entities.Livre.EtatLivre;
 
 import lombok.Getter;
@@ -10,7 +11,7 @@ import lombok.Setter;
 public class DtoLivre {
 
 	
-	// Dto simplifié sans domaine ?
+	
 	
 	private Long idLivre;
 	private String titre;
@@ -18,11 +19,11 @@ public class DtoLivre {
 	private String editeur;
 	private Boolean dispo;
 	private EtatLivre etat = EtatLivre.BON_ETAT;
-	private Long domaine;
+	private Domaine domaine;
 	
 	
 	
-	public DtoLivre(Long idLivre, String titre, String auteur, String editeur, Boolean dispo, EtatLivre etat, Long domaine) {
+	public DtoLivre(Long idLivre, String titre, String auteur, String editeur, Boolean dispo, EtatLivre etat, Domaine domaine) {
 		super();
 		this.idLivre = idLivre;
 		this.titre = titre;

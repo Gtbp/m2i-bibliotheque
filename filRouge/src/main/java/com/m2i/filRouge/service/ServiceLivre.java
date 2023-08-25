@@ -36,7 +36,7 @@ public class ServiceLivre extends AbstractGenericService<Livre, Long, DtoLivre> 
 	public DtoLivre saveOrUpdateDtoLivre(DtoLivre dtoLivre) {
 		Livre livreEntity = MyConverter.map(dtoLivre, Livre.class);
 		if(dtoLivre.getDomaine()!=null) {
-			Domaine domaineEntity = iDaoDomaine.findById(dtoLivre.getDomaine()).orElse(null);
+			Domaine domaineEntity = iDaoDomaine.findById(dtoLivre.getDomaine().getIdDomaine()).orElse(null);
 			livreEntity.setDomaine(domaineEntity);
 		}
 		iDaoLivre.save(livreEntity);

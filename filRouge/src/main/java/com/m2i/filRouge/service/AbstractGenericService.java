@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.m2i.filRouge.converter.GenericConverter;
 import com.m2i.filRouge.converter.MyConverter;
 import com.m2i.filRouge.exception.NotFoundException;
 

@@ -21,7 +21,7 @@ public class MyConverter extends GenericConverter {
 						sourceLivre.getEditeur(),
 						sourceLivre.getDispo(),
 						sourceLivre.getEtat(),
-						sourceLivre.getDomaine().getIdDomaine()
+						sourceLivre.getDomaine()
 						);
 				
 			return	GenericConverter.map(dtoLivre,targetClass);

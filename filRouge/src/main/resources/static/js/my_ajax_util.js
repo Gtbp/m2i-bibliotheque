@@ -31,6 +31,10 @@ function makeAjaxPostRequest(url, jsonData, callback, errCallback) {
 function makeAjaxPutRequest(url, jsonData, callback, errCallback) {
 	var xhr = new XMLHttpRequest();
 	registerCallbacks(xhr, callback, errCallback);
+	  xhr.onerror = function() {
+        if (errCallback)
+            errCallback("An error occurred while making the PUT request.");
+    };
 	xhr.open("PUT", url, true);
 	xhr.setRequestHeader("Content-Type", "application/json");
 	xhr.send(jsonData);

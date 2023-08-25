@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.m2i.filRouge.converter.GenericConverter;
+import com.m2i.filRouge.dto.DtoDomaine;
 import com.m2i.filRouge.dto.DtoLivre;
+import com.m2i.filRouge.entities.Domaine;
 import com.m2i.filRouge.entities.Livre;
+import com.m2i.filRouge.service.ServiceDomaine;
 import com.m2i.filRouge.service.ServiceLivre;
 
 @RestController
@@ -28,6 +31,9 @@ public class LivreRest {
 
 	@Autowired
 	private ServiceLivre serviceLivre; 
+	
+	@Autowired
+	private ServiceDomaine serviceDomaine;
 	
 	
 	// display one book (with ExceptionHandler)
@@ -62,13 +68,12 @@ public class LivreRest {
 			      @PathVariable(value="idLivre",required = false ) Long idLivre) {
 		
 		    Long idLivreToUpdate = idLivre!=null ? idLivre : dtoLivre.getIdLivre();
-		   
-		    
 		    if(!serviceLivre.existById(idLivreToUpdate))
 		    	return new ResponseEntity<String>("{ \"err\" : \"Livre not found\"}" ,
  			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
 		    
 		    if(dtoLivre.getIdLivre()==null)
+		    
 		    	dtoLivre.setIdLivre(idLivreToUpdate);
 		    serviceLivre.save(GenericConverter.map(dtoLivre, Livre.class));
 			return new ResponseEntity<DtoLivre>(dtoLivre , HttpStatus.OK);
