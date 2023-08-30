@@ -7,7 +7,6 @@ window.onload=function(){
 	   .addEventListener("click",addLivre);       
 }
 
-
 let tableBody = document.getElementById("table_body");
 
 tableBody.addEventListener("click", function(event) {
@@ -27,7 +26,7 @@ tableBody.addEventListener("click", function(event) {
             auteur: auteur,
             editeur: editeur,
             dispo: true,
-            etat: "BON_ETAT",
+            etat: " ",
             domaine: domaine
         };
         
@@ -42,10 +41,6 @@ tableBody.addEventListener("click", function(event) {
         document.getElementById("selectUpdateEtat").value = currentLivreJs.etat;
         document.getElementById("selectUpdateDomaine").value = domaine;
         
-        
-
-        
-        
     }
     
     if (event.target.classList.contains("deleteBtn")) {
@@ -55,12 +50,11 @@ tableBody.addEventListener("click", function(event) {
    
 });
 
-document.getElementById("btnUpdateLivre").addEventListener( "click", function() {
 
+document.getElementById("btnUpdateLivre").addEventListener( "click", function() {
 	
     if (currentLivreJs != null) {
         console.log(currentLivreJs);
-        console.log("Button clicked")
         updateLivre(currentLivreJs.idLivre);
        console.log(currentLivreJs);
         currentLivreJs = null; // Réinitialisez la variable après la mise à jour
@@ -102,7 +96,7 @@ function allDomaines(){
 	
 	makeAjaxGetRequest(wsUrl,function(responseJson){
 		let domainesJs = JSON.parse(responseJson);
-	
+        console.log(domainesJs);
 		let selectElt = document.getElementById("selectDomaine");
 		for(let domaine of domainesJs){
 			let option = document.createElement("option");
@@ -111,20 +105,16 @@ function allDomaines(){
 			selectElt.appendChild(option);
 			}
 			
-			let selectUpdateElt = document.getElementById("selectUpdateDomaine");
-		for(let domaine of domainesJs){
-			let option = document.createElement("option");
-			option.value = domaine.idDomaine;
-			option.innerHTML=domaine.nom;
-			selectUpdateElt.appendChild(option);
-			}	
+        let selectUpdateElt = document.getElementById("selectUpdateDomaine");
+    for(let domaine of domainesJs){
+        let option = document.createElement("option");
+        option.value = domaine.idDomaine;
+        option.innerHTML=domaine.nom;
+        selectUpdateElt.appendChild(option);
+        }	
 			
 			});
-	
-}
-			
-
-
+}			
 	
 function allLivres(){	
 
@@ -174,7 +164,6 @@ function deleteLivre(idLivre) {
 
 function updateLivre(idLivre) {
     let wsUrl = "./api-bibliotheque/livre/" + idLivre;
-    
 
 	let updatedId =	document.getElementById("inputUpdateLivre").value;
     let updatedTitre =   document.getElementById("inputUpdateTitre").value;

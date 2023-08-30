@@ -2,6 +2,7 @@ package com.m2i.filRouge.dao;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -70,9 +71,13 @@ Logger logger = LoggerFactory.getLogger(TestEmpruntDao.class);
 		
 		// create emprunt 
 	
-		Date date_debut = new Date();
-		Date date_fin = new Date();
-		
+		 
+		 String pattern = "yyyy-MM-dd";
+		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		 String date_debut = simpleDateFormat.format(new Date());
+		 String date_fin = simpleDateFormat.format(new Date());
+		 
+		 
 		Emprunt empruntTest = new Emprunt(null,
 				date_debut,
 				date_fin,
@@ -128,9 +133,13 @@ Logger logger = LoggerFactory.getLogger(TestEmpruntDao.class);
 		iDaoLivre.save(livreTestDeleteEmprunt);
 		
 		Lecteur lecteurTestDeleteEmprunt = iDaoLecteur.findById((long) 1).orElse(null);
-		Date date_debut = new Date();
-		Date date_fin = new Date();
 		
+		 
+		 String pattern = "yyyy-MM-dd";
+		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		 String date_debut = simpleDateFormat.format(new Date());
+		 String date_fin = simpleDateFormat.format(new Date());
+		 
 		Emprunt empruntDeleteTest = new Emprunt(null,
 				date_debut,
 				date_fin,

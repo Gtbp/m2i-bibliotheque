@@ -10,9 +10,6 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class DtoLivre {
 
-	
-	
-	
 	private Long idLivre;
 	private String titre;
 	private String auteur;
