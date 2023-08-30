@@ -1,15 +1,16 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>livre Ajax</title>
-<script src="js/my_ajax_util.js"></script>
-<script src="js/empruntAjax.js"></script>
+<script src="js/my_ajax_util.js" defer></script>
+<script src="js/empruntAjax.js" defer></script>
 </head>
 <body>
 	
-	
+	<h2>Formulaire d'ajout d'un emprunt</h2>
+	<form>
 	date de fin : <input type="date" id="inputDateFin" /> <br/>
 	type : <select id="selectType">
 				<option value="EFFECTIF">EFFECTIF</option>
@@ -19,17 +20,35 @@
 	livre : <select id="selectLivre"></select><br/>
 	
 	<button id="btnAjout">ajouter emprunt (post)</button>
+	</form>
 	<hr/>
 	
+	<h2>Liste des emprunts</h2>
     <table border="1">
 		
 	   <thead>
-		<tr><th>idEmprunt</th><th>date debut</th><th>date fin</th><th>type</th><th>nom lecteur</th><th>titre livre</th></tr>
+		<tr><th>idEmprunt</th><th>date debut</th><th>date fin</th><th>type</th><th>nom lecteur</th><th>titre livre</th> <th>action</th></tr>
 		
 	   </thead>
 	   <tbody id="table_body">
 		   <!-- <tr><td>1</td><td>compteA</td><td>50.0</td></tr> -->
 	   </tbody>
 	</table>
+
+	<h2>Formulaire de mise à jour d'un emprunt</h2>
+	<form>
+		Id  <input id="inputUpdateEmprunt" /> <br/>
+		date de début : <input type="date" id="inputUpdateDateDebut" /><br/>
+		date de fin : <input type="date" id="inputUpdateDateFin" /><br/>
+		type : <select id="selectUpdateType">
+					<option value="EFFECTIF">EFFECTIF</option>
+					<option value="RESERVATION">RESERVATION</option>
+				</select> <br/>
+		lecteur : <select id="selectUpdateLecteur"></select> <br/>
+		livre : <select id="selectUpdateLivre"></select><br/>
+		
+		<button id="btnUpdateEmprunt">Mettre à jour</button>
+		</form>
+
 </body>
 </html>

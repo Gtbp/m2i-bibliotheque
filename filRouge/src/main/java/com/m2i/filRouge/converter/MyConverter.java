@@ -34,8 +34,8 @@ public class MyConverter extends GenericConverter {
 						sourceEmprunt.getDate_debut(),
 						sourceEmprunt.getDate_fin(),
 						sourceEmprunt.getType(),
-						sourceEmprunt.getLivre().getIdLivre(),
-						sourceEmprunt.getLecteur().getIdPersonne()
+						sourceEmprunt.getLecteur(),
+						sourceEmprunt.getLivre()
 						);
 				
 			

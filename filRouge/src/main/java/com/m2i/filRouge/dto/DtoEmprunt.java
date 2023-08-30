@@ -3,6 +3,8 @@ package com.m2i.filRouge.dto;
 import java.util.Date;
 
 import com.m2i.filRouge.entities.Emprunt.TypesEmprunt;
+import com.m2i.filRouge.entities.Lecteur;
+import com.m2i.filRouge.entities.Livre;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,16 +14,15 @@ import lombok.Setter;
 public class DtoEmprunt {
 	
 
-	// dto simplifié 
 	private Long idEmprunt;	
 	private Date date_debut;
 	private Date date_fin;
 	private TypesEmprunt type;
-	private Long lecteur;
-	private Long livre;
+	private Lecteur lecteur;
+	private Livre livre;
 	
 	
-	public DtoEmprunt(Long idEmprunt, Date date_debut, Date date_fin, TypesEmprunt type, Long lecteur, Long livre) {
+	public DtoEmprunt(Long idEmprunt, Date date_debut, Date date_fin, TypesEmprunt type, Lecteur lecteur, Livre livre) {
 		super();
 		this.idEmprunt = idEmprunt;
 		this.date_debut = date_debut;

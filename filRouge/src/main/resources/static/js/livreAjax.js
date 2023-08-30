@@ -27,7 +27,7 @@ tableBody.addEventListener("click", function(event) {
             auteur: auteur,
             editeur: editeur,
             dispo: true,
-            etat: "BON_ETAT",
+            etat: " ",
             domaine: domaine
         };
         
@@ -41,7 +41,16 @@ tableBody.addEventListener("click", function(event) {
         document.getElementById("selectUpdateDispo").value = currentLivreJs.dispo;
         document.getElementById("selectUpdateEtat").value = currentLivreJs.etat;
         document.getElementById("selectUpdateDomaine").value = domaine;
-        
+      /*  
+        let selectUpdateDomaine = document.getElementById("selectUpdateDomaine");
+    	let domaineIdLivre = currentLivreJs.domaine;
+    	for (let index = 0; index < selectUpdateDomaine.options.length; index++) {
+        let option = selectUpdateDomaine.options[index];
+        if (option.value == domaineIdLivre) {
+            selectUpdateDomaine.selectedIndex = index;
+            break;
+        }
+    }*/
         
 
         
@@ -111,20 +120,16 @@ function allDomaines(){
 			selectElt.appendChild(option);
 			}
 			
-			let selectUpdateElt = document.getElementById("selectUpdateDomaine");
-		for(let domaine of domainesJs){
-			let option = document.createElement("option");
-			option.value = domaine.idDomaine;
-			option.innerHTML=domaine.nom;
-			selectUpdateElt.appendChild(option);
-			}	
+        let selectUpdateElt = document.getElementById("selectUpdateDomaine");
+    for(let domaine of domainesJs){
+        let option = document.createElement("option");
+        option.value = domaine.idDomaine;
+        option.innerHTML=domaine.nom;
+        selectUpdateElt.appendChild(option);
+        }	
 			
 			});
-	
-}
-			
-
-
+}			
 	
 function allLivres(){	
 
@@ -174,7 +179,6 @@ function deleteLivre(idLivre) {
 
 function updateLivre(idLivre) {
     let wsUrl = "./api-bibliotheque/livre/" + idLivre;
-    
 
 	let updatedId =	document.getElementById("inputUpdateLivre").value;
     let updatedTitre =   document.getElementById("inputUpdateTitre").value;
