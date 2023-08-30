@@ -7,7 +7,6 @@ window.onload=function(){
 	   .addEventListener("click",addLivre);       
 }
 
-
 let tableBody = document.getElementById("table_body");
 
 tableBody.addEventListener("click", function(event) {
@@ -41,19 +40,6 @@ tableBody.addEventListener("click", function(event) {
         document.getElementById("selectUpdateDispo").value = currentLivreJs.dispo;
         document.getElementById("selectUpdateEtat").value = currentLivreJs.etat;
         document.getElementById("selectUpdateDomaine").value = domaine;
-      /*  
-        let selectUpdateDomaine = document.getElementById("selectUpdateDomaine");
-    	let domaineIdLivre = currentLivreJs.domaine;
-    	for (let index = 0; index < selectUpdateDomaine.options.length; index++) {
-        let option = selectUpdateDomaine.options[index];
-        if (option.value == domaineIdLivre) {
-            selectUpdateDomaine.selectedIndex = index;
-            break;
-        }
-    }*/
-        
-
-        
         
     }
     
@@ -64,12 +50,11 @@ tableBody.addEventListener("click", function(event) {
    
 });
 
-document.getElementById("btnUpdateLivre").addEventListener( "click", function() {
 
+document.getElementById("btnUpdateLivre").addEventListener( "click", function() {
 	
     if (currentLivreJs != null) {
         console.log(currentLivreJs);
-        console.log("Button clicked")
         updateLivre(currentLivreJs.idLivre);
        console.log(currentLivreJs);
         currentLivreJs = null; // Réinitialisez la variable après la mise à jour
@@ -111,7 +96,7 @@ function allDomaines(){
 	
 	makeAjaxGetRequest(wsUrl,function(responseJson){
 		let domainesJs = JSON.parse(responseJson);
-	
+        console.log(domainesJs);
 		let selectElt = document.getElementById("selectDomaine");
 		for(let domaine of domainesJs){
 			let option = document.createElement("option");

@@ -69,10 +69,10 @@ function addEmprunt(){
 		function formatDate(date) {
 			const d = new Date(date);
 			const year = d.getFullYear();
-			const month = String(d.getMonth() + 1).padStart(2, '0'); // Notez l'ajout de +1 ici car les mois sont indexés à partir de 0
+			const month = String(d.getMonth() + 1).padStart(2, '0'); // 
 			const day = String(d.getDate()).padStart(2, '0');
 		
-			return `${day}-${month}-${year}`;
+			return `${year}-${month}-${day}`;
 		}
 	
 	const today = formatDate(Date.now());
@@ -103,7 +103,7 @@ function addEmprunt(){
 	let wsUrl = "./api-bibliotheque/emprunt";   
 	makeAjaxPostRequest(wsUrl,empruntJson,function (responseJson){
 		console.log("responseJson="+responseJson);
-		allEmprunts(); //pour rafraîchir le tableau avec nouveau livre ajoute
+		allEmprunts(); //pour rafraîchir le tableau avec nouvel emprunt ajoute
 	});         
 }
 	

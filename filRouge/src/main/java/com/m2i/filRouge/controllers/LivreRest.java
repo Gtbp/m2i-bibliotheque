@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.m2i.filRouge.converter.GenericConverter;
-import com.m2i.filRouge.dto.DtoDomaine;
 import com.m2i.filRouge.dto.DtoLivre;
-import com.m2i.filRouge.entities.Domaine;
 import com.m2i.filRouge.entities.Livre;
 import com.m2i.filRouge.service.ServiceDomaine;
 import com.m2i.filRouge.service.ServiceLivre;

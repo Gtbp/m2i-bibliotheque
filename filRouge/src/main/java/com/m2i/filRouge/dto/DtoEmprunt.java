@@ -1,7 +1,5 @@
 package com.m2i.filRouge.dto;
 
-import java.util.Date;
-
 import com.m2i.filRouge.entities.Emprunt.TypesEmprunt;
 import com.m2i.filRouge.entities.Lecteur;
 import com.m2i.filRouge.entities.Livre;
@@ -15,14 +13,14 @@ public class DtoEmprunt {
 	
 
 	private Long idEmprunt;	
-	private Date date_debut;
-	private Date date_fin;
+	private String date_debut;
+	private String date_fin;
 	private TypesEmprunt type;
 	private Lecteur lecteur;
 	private Livre livre;
 	
 	
-	public DtoEmprunt(Long idEmprunt, Date date_debut, Date date_fin, TypesEmprunt type, Lecteur lecteur, Livre livre) {
+	public DtoEmprunt(Long idEmprunt, String date_debut, String date_fin, TypesEmprunt type, Lecteur lecteur, Livre livre) {
 		super();
 		this.idEmprunt = idEmprunt;
 		this.date_debut = date_debut;

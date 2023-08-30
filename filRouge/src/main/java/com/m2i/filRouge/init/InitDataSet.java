@@ -1,8 +1,6 @@
 package com.m2i.filRouge.init;
 
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -79,16 +77,10 @@ public class InitDataSet {
 				 "initUsernameAdmin",
 				 "initPasswordAdmin"));
 		 
-		
-		 
-		 	Date date_debut = new Date();
-		 
-			Instant todayInstant = date_debut.toInstant();
-			Instant tomorrowDate = todayInstant.plus(1,ChronoUnit.DAYS);
-			
-			Date date_fin = Date.from(tomorrowDate);
-			
-
+		 String pattern = "yyyy-MM-dd";
+		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		 String date_debut = simpleDateFormat.format(new Date());
+		 String date_fin = simpleDateFormat.format(new Date());
 			
 		 Emprunt empruntAa = iDaoEmprunt.save(new Emprunt(null,
 				 date_debut,
