@@ -1,5 +1,6 @@
 package com.m2i.filRouge.init;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -76,10 +77,10 @@ public class InitDataSet {
 				 "initUsernameAdmin",
 				 "initPasswordAdmin"));
 		 
-		 	Date date_debut = new Date();
-		 
-			Date date_fin = new Date();
-			
+		 String pattern = "yyyy-MM-dd";
+		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		 String date_debut = simpleDateFormat.format(new Date());
+		 String date_fin = simpleDateFormat.format(new Date());
 			
 		 Emprunt empruntAa = iDaoEmprunt.save(new Emprunt(null,
 				 date_debut,

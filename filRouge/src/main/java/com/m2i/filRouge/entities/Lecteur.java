@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +21,7 @@ public class Lecteur extends Personne{
 
 	
 	@OneToMany(fetch= FetchType.LAZY, mappedBy= "idEmprunt", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Emprunt> emprunts;
 	
 	public Lecteur(Long idPersonne, String prenom, String nom, String email, String telephone, String adresse) {

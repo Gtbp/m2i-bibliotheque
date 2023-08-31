@@ -1,8 +1,5 @@
 package com.m2i.filRouge.entities;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,9 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,12 +25,10 @@ public class Emprunt {
 	private Long idEmprunt;
 	
 	@Column(name="date_debut")
-	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy", locale = "fr_FR", timezone="Europe/Paris")
-	private Date date_debut;
+	private String date_debut;
 	
 	@Column(name="date_fin")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy", locale = "fr_FR", timezone="Europe/Paris")
-	private Date date_fin;
+	private String date_fin;
 	
 	@Column(name="type")
 	private TypesEmprunt type;
@@ -55,7 +47,7 @@ public class Emprunt {
 			@JoinColumn(name="motif")
 	private Incident incident;
 
-	public Emprunt(Long idEmprunt, Date date_debut, Date date_fin, TypesEmprunt type, Lecteur lecteur, Livre livre) {
+	public Emprunt(Long idEmprunt, String date_debut, String date_fin, TypesEmprunt type, Lecteur lecteur, Livre livre) {
 		super();
 		this.idEmprunt = idEmprunt;
 		this.date_debut = date_debut;
@@ -66,15 +58,6 @@ public class Emprunt {
 	}
 	
 	
-	public Date initDateFin() {
-		
-		Calendar c = Calendar.getInstance(); 
-		c.setTime(date_fin); 
-		c.add(Calendar.DATE, 14);
-		date_fin = c.getTime();
-		
-		return date_fin;
-	}
 	
 	
 }
