@@ -137,12 +137,12 @@ function allLivres(){
 			
 			let cellAction = row.insertCell(7); // Ajouter la cellule pour les boutons
             let updateBtn = document.createElement("button");
-            updateBtn.className = "updateBtn";
+            updateBtn.className = "updateBtn btn btn-warning";
             updateBtn.setAttribute("data-idlivre", livre.idLivre);
             updateBtn.textContent = "Update";
             
             let deleteBtn = document.createElement("button");
-            deleteBtn.className = "deleteBtn";
+            deleteBtn.className = "deleteBtn btn btn-danger";
             deleteBtn.setAttribute("data-idlivre", livre.idLivre);
             deleteBtn.textContent = "Delete";
             
