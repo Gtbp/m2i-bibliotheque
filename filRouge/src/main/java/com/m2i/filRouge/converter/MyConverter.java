@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.m2i.filRouge.dto.DtoEmprunt;
 import com.m2i.filRouge.dto.DtoLivre;
+import com.m2i.filRouge.dto.DtoPersonne;
 import com.m2i.filRouge.entities.Emprunt;
 import com.m2i.filRouge.entities.Livre;
 
@@ -41,15 +42,12 @@ public class MyConverter extends GenericConverter {
 			
 				return GenericConverter.map(dtoEmprunt,targetClass);
 				
-			}
-				 	
+			}				 	
 			
 			else 
 				
 				return  GenericConverter.map(source,targetClass);
 		
-
-	        
 	    }
 		// exemple d'utilisation : GenericConverter.map(ListeLivreEntity,LivreDto.class)
 				public static <S,D> List<D> map(List<S> sourceList , Class<D> targetClass){

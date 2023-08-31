@@ -52,15 +52,16 @@ public class PersonneRest {
 	public ResponseEntity<?> putPersonne(@RequestBody DtoPersonne dtoPersonne, 
 			      @PathVariable(value="idPersonne",required = false ) Long idPersonne) {
 		
-		    Long idPersonneToUpdate = idPersonne!=null ? idPersonne : dtoPersonne.getIdPersonne();
-		   
-		    if(!servicePersonne.existById(idPersonneToUpdate))
+		    Long idPersonneToUpdate = idPersonne!= null ? idPersonne : dtoPersonne.getIdPersonne();
+		    
+		    if(!servicePersonne.existById(idPersonneToUpdate)) 
+
 		    	return new ResponseEntity<String>("{ \"err\" : \"Personne not found\"}" ,
  			           HttpStatus.NOT_FOUND); //NOT_FOUND = code http 404
-		    
 		    if(dtoPersonne.getIdPersonne()==null)
 		    	dtoPersonne.setIdPersonne(idPersonneToUpdate);
-		    servicePersonne.save(GenericConverter.map(dtoPersonne, Personne.class));
+		    	servicePersonne.save(GenericConverter.map(dtoPersonne, Personne.class));
+		    	
 			return new ResponseEntity<DtoPersonne>(dtoPersonne , HttpStatus.OK);
 	}
 	
