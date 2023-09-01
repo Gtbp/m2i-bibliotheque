@@ -1,5 +1,6 @@
 package com.m2i.filRouge.service;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import org.springframework.data.repository.CrudRepository;
@@ -20,5 +21,5 @@ public class ServicePersonne extends AbstractGenericService<Personne,Long,DtoPer
 	public Class<DtoPersonne> getDtoClass() {
 		return DtoPersonne.class;
 	}
-
+	
 }

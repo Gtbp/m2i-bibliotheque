@@ -38,7 +38,7 @@ public class LecteurRest {
 		return serviceLecteur.findAllDto();
 	}
 	
-	//exemple de fin d'URL: ./api-biblio/personne
+	//exemple de fin d'URL: ./api-bibliotheque/lecteur
 	//appelé en mode POST avec dans la partie invisible "body" de la requête:
 	// { "idPersonne" : null , "titre" : "titreRest" , "auteur" : "auteurRest" , "editeur" : "editeurRest" , "dispo" : "true" , "etat": "BON_ETAT"  , "domaine" : 1 }
 	

@@ -13,4 +13,5 @@ public interface GenericService<E,ID,DTO> {
 	    public boolean existById(ID id);
 	    public List<E> findAll();
 	    public List<DTO> findAllDto(); // pareil que findDto
+	    
 }
