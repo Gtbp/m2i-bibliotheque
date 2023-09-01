@@ -137,14 +137,14 @@ function allLivres(){
 			
 			let cellAction = row.insertCell(7); // Ajouter la cellule pour les boutons
             let updateBtn = document.createElement("button");
-            updateBtn.className = "updateBtn btn btn-warning";
+            updateBtn.className = "updateBtn button-light-blue";
             updateBtn.setAttribute("data-idlivre", livre.idLivre);
-            updateBtn.textContent = "Update";
+            updateBtn.textContent = "Modifier";
             
             let deleteBtn = document.createElement("button");
-            deleteBtn.className = "deleteBtn btn btn-danger";
+            deleteBtn.className = "deleteBtn button-grey";
             deleteBtn.setAttribute("data-idlivre", livre.idLivre);
-            deleteBtn.textContent = "Delete";
+            deleteBtn.textContent = "Supprimer";
             
             cellAction.appendChild(updateBtn);
             cellAction.appendChild(deleteBtn);
@@ -176,7 +176,7 @@ function updateLivre(idLivre) {
  	let updatedDomaineId = document.getElementById("selectUpdateDomaine").value;
  	let updatedDomaineNom = document.getElementById("selectUpdateDomaine").options[document.getElementById("selectUpdateDomaine").selectedIndex].text;
 	let updatedDomaine = { idDomaine: updatedDomaineId, nom: updatedDomaineNom };
-
+ 
     let updatedLivre = {
         idLivre: updatedId,
         titre: updatedTitre,
