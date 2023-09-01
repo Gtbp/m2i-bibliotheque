@@ -11245,6 +11245,110 @@ body {
 .pastel-blue{
   background-color: #6096BA;
 }
-.pastel-red{
+.pastel-light-blue{
   background-color: #A3CEF1;
+}
+
+/* CSS */
+.button-blue {
+  background: #6096BA;
+  border: 1px solid #6096BA;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-blue:hover,
+.button-blue:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #6096BA;
+}
+
+.button-blue:active {
+  opacity: .5;
+}
+
+/* CSS */
+.button-light-blue {
+  background: #A3CEF1;
+  border: 1px solid #A3CEF1;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-light-blue:hover,
+.button-light-blue:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #A3CEF1;
+}
+
+.button-light-blue:active {
+  opacity: .5;
+}
+/* CSS */
+.button-grey {
+  background: #8B8C89;
+  border: 1px solid #8B8C89;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-grey:hover,
+.button-grey:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #8B8C89;
+}
+
+.button-grey:active {
+  opacity: .5;
 }

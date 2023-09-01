@@ -42,7 +42,6 @@ public class MyConverter extends GenericConverter {
 			
 				return GenericConverter.map(dtoEmprunt,targetClass);
 				
-			}				 	
 			
 			else 
 				
