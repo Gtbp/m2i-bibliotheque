@@ -102,12 +102,12 @@ function allLecteurs(){
 			
 			let cellAction = row.insertCell(6); // Ajouter la cellule pour les boutons
             let updateBtn = document.createElement("button");
-            updateBtn.className = "updateBtn";
+            updateBtn.className = "updateBtn button-light-blue";
             updateBtn.setAttribute("data-idpersonne", lecteur.idPersonne);
             updateBtn.textContent = "Update";
             
             let deleteBtn = document.createElement("button");
-            deleteBtn.className = "deleteBtn";
+            deleteBtn.className = "deleteBtn button-grey";
             deleteBtn.setAttribute("data-idpersonne", lecteur.idPersonne);
             deleteBtn.textContent = "Delete";
             

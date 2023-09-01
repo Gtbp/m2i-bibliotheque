@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.m2i.filRouge.dto.DtoEmprunt;
 import com.m2i.filRouge.dto.DtoLivre;
-import com.m2i.filRouge.dto.DtoPersonne;
 import com.m2i.filRouge.entities.Emprunt;
 import com.m2i.filRouge.entities.Livre;
 
