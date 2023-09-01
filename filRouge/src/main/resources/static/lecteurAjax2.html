@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>lecteur Ajax</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+	<link href="css/styles.css" rel="stylesheet" />
+	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+	<script src="js/my_ajax_util.js" defer></script>
+	<script src="js/livreAjax.js" defer></script>
+</head>
+
+<body>
+
+	<body class="sb-nav-fixed">
+		<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+			<!-- Navbar Brand-->
+			<a class="navbar-brand ps-3" href="index.html">Bibliothèque</a>
+			<!-- Sidebar Toggle-->
+			<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+					class="fas fa-bars"></i></button>
+
+
+		</nav>
+		<div id="layoutSidenav">
+			<div id="layoutSidenav_nav">
+				<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+					<div class="sb-sidenav-menu">
+						<div class="nav">
+
+							<a class="nav-link" href="index.html">
+								<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+								Tableau de bord
+							</a>
+
+							<a class="nav-link" href="domaineAjax.html">
+								<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+								Domaines
+							</a>
+
+							<a class="nav-link" href="livreAjax.html">
+								<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+								Livres
+							</a>
+
+							<a class="nav-link" href="personneAjax.html">
+								<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+								Personnes
+							</a>
+
+							<a class="nav-link" href="empruntAjax.html">
+								<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+								Emprunts
+							</a>
+
+							<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+								data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+								<div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+								Appels API
+								<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+							</a>
+							<div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+								data-bs-parent="#sidenavAccordion">
+								<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+
+									<a class="nav-link" href="./api-bibliotheque/domaine">Domaines JSON</a>
+
+									<a class="nav-link" href="./api-bibliotheque/livre">Livres JSON</a>
+
+									<a class="nav-link" href="./api-bibliotheque/personne">Personnes JSON</a>
+
+									<a class="nav-link" href="./api-bibliotheque/emprunt">Emprunts JSON</a>
+								</nav>
+							</div>
+
+
+						</div>
+					</div>
+					<div class="sb-sidenav-footer">
+						<div class="small">Connecté en tant que :</div>
+						Admin-01
+					</div>
+				</nav>
+			</div>
+			<div id="layoutSidenav_content">
+				<main>
+					<div class="container-fluid px-4">
+						<h1 class="mt-4 fa-table me-1">Livres</h1>
+						<ol class="breadcrumb mb-4">
+						</ol>
+						<div class="row">
+							<div class="container">
+								<table class="table table-hover table-striped">
+									<thead>
+										<tr>
+											<th>id Lecteur</th>
+											<th>Prenom</th>
+											<th>Nom</th>
+											<th>Email</th>
+											<th>Telephone</th>
+											<th>Adresse</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody id="table_body">
+										<!-- <tr><td>1</td><td>compteA</td><td>50.0</td><td><button class="updateBtn" data-idlivre="1">Update</button><button class="deleteBtn" data-idlivre="1">Delete</button></td></tr> -->
+
+									</tbody>
+								</table>
+							</div>
+							
+
+
+						</div>
+
+
+						<div class="row">
+
+							<div class="col-md-6">
+
+								<h2>Ajout de lecteur</h2>
+								<form class="row g-3">
+									<div class="col-md-4">
+										<label for="inputPrenom" class="form-label">Prénom</label>
+										<input type="text" class="form-control" id="inputPrenom">
+									</div>
+									<div class="col-md-4">
+										<label for="inputNom" class="form-label">Nom</label>
+										<input type="text" class="form-control" id="inputNom">
+									</div>
+									<div class="col-md-4">
+										<label for="inputEmail" class="form-label">Email</label>
+										<input type="text" class="form-control" id="inputEmail">
+									</div>
+									<div class="col-md-4">
+										<label for="inputTelephone" class="form-label">Téléphone</label>
+										<input type="text" class="form-control" id="inputTelephone">
+									</div>
+									<div class="col-md-4">
+										<label for="inputAdresse" class="form-label">Adresse</label>
+										<input type="text" class="form-control" id="inputAdresse">
+									</div>
+									
+
+									<div class="col-12">
+										<button id="btnAjout" class="btn btn-success">Ajouter</button>
+									</div>
+								</form>
+
+							</div>
+
+							<div class="col-md-6">
+								<h2>Modifier un lecteur</h2>
+
+								<form class="row g-3">
+									<div class="col-md-4">
+										<label for="inputUpdatePrenom" class="form-label">Prénom</label>
+										<input type="text" class="form-control" id="inputUpdatePrenom">
+									</div>
+									<div class="col-md-4">
+										<label for="inputUpdateNom" class="form-label">Nom</label>
+										<input type="text" class="form-control" id="inputUpdateNom">
+									</div>
+									<div class="col-md-4">
+										<label for="inputUpdateEmail" class="form-label">Email</label>
+										<input type="text" class="form-control" id="inputUpdateEmail">
+									</div>
+									<div class="col-md-4">
+										<label for="inputUpdateTelephone" class="form-label">Téléphone</label>
+										<input type="text" class="form-control" id="inputUpdateTelephone">
+									</div>
+									<div class="col-md-4">
+										<label for="inputUpdateAdresse" class="form-label">Adresse</label>
+										<input type="text" class="form-control" id="inputUpdateAdresse">
+									</div>
+									
+									<div class="col-md-2">
+										<label for="inputUpdateLecteur" class="form-label">Id</label>
+										<input type="text" class="form-control" disabled id="inputUpdateLecteur">
+									</div>
+									
+									
+									<div class="col-12">
+										<button id="btnUpdateLivre" class="btn btn-warning">Modifier</button>
+									</div>
+								</form>
+							</div>
+
+						</div>
+					</div>	
+				</main>
+				<footer class="py-4 bg-light mt-auto">
+					<div class="container-fluid px-4">
+						<div class="d-flex align-items-center justify-content-between small">
+							<div class="text-muted">Copyright &copy; Raphaël FARINA & Thibaud GLUTRON - 2023</div>
+
+						</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+			crossorigin="anonymous"></script>
+		<script src="js/scripts.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+			crossorigin="anonymous"></script>
+
+	</body>
+</body>
+
+</html>
