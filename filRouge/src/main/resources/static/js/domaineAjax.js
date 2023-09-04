@@ -62,7 +62,7 @@ function addDomaine(){
 	                 description : description     
 	                  };
 	let domaineJson = JSON.stringify(domaineJs) ;  
-	let wsUrl = "./api-bibliotheque/domaine";   
+	let wsUrl = "/filRouge/api-bibliotheque/domaine";   
 	makeAjaxPostRequest(wsUrl,domaineJson,function (responseJson){
 		console.log("responseJson="+responseJson);
 		allDomaines(); //pour rafraîchir le tableau avec nouveau domaine ajoute

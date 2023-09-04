@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.m2i.filRouge.converter.GenericConverter;
 import com.m2i.filRouge.dto.DtoLivre;
 import com.m2i.filRouge.entities.Livre;
-import com.m2i.filRouge.service.ServiceDomaine;
 import com.m2i.filRouge.service.ServiceLivre;
 
 @RestController
@@ -30,8 +29,8 @@ public class LivreRest {
 	@Autowired
 	private ServiceLivre serviceLivre; 
 	
-	@Autowired
-	private ServiceDomaine serviceDomaine;
+//	@Autowired
+//	private ServiceDomaine serviceDomaine;
 	
 	// display one book (with ExceptionHandler)
 	@GetMapping("/{idLivre}" )
