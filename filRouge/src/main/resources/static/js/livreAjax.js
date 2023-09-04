@@ -96,7 +96,7 @@ function allDomaines(){
 	
 	makeAjaxGetRequest(wsUrl,function(responseJson){
 		let domainesJs = JSON.parse(responseJson);
-        console.log(domainesJs);
+        
 		let selectElt = document.getElementById("selectDomaine");
 		for(let domaine of domainesJs){
 			let option = document.createElement("option");

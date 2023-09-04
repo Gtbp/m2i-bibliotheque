@@ -20,12 +20,11 @@ public class SpringSecurityConfig {
 	@Bean
 	public SecurityFilterChain sfc(HttpSecurity http) throws Exception {
 		http
+			.csrf().disable()
 			.authorizeRequests(authorizeRequests ->
 				authorizeRequests
 					.antMatchers("/admin/*").hasRole("ADMIN")
-		            .antMatchers("/user/*").hasRole("USER")
 		            .anyRequest().authenticated()
-		            .and()
 			)
 			 .formLogin(loginConfigurer ->
 	            loginConfigurer

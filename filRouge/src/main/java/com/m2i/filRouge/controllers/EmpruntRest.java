@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.m2i.filRouge.converter.GenericConverter;
 import com.m2i.filRouge.dto.DtoEmprunt;
 import com.m2i.filRouge.entities.Emprunt;
+import com.m2i.filRouge.entities.Livre;
 import com.m2i.filRouge.service.ServiceEmprunt;
 
 @RestController
@@ -28,6 +29,8 @@ public class EmpruntRest {
 
 	@Autowired
 	private ServiceEmprunt serviceEmprunt; 
+	
+
 	
 	// display one emprunt
 	
@@ -47,9 +50,15 @@ public class EmpruntRest {
 	// { "idEmprunt" : null , "titre" : "titreRest" , "auteur" : "auteurRest" , "editeur" : "editeurRest" , "dispo" : "true" , "etat": "BON_ETAT"  , "domaine" : 1 }
 	
 	// Create
+	
 	@PostMapping("")
+	
 	public DtoEmprunt postEmprunt(@RequestBody DtoEmprunt nouveauEmprunt) {
 		DtoEmprunt emprunt = serviceEmprunt.saveOrUpdateDtoEmprunt(nouveauEmprunt);
+		Long idEmprunt = emprunt.getIdEmprunt();
+		
+		Livre livre =serviceEmprunt.findLivreByIdEmprunt(idEmprunt);
+		livre.setDispo(false);
 		return GenericConverter.map(emprunt, DtoEmprunt.class); //on retourne le emprunt avec clef primaire auto_incrémentée
 		
 		 

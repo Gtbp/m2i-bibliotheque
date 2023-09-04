@@ -53,5 +53,12 @@ public class ServiceEmprunt extends AbstractGenericService<Emprunt, Long, DtoEmp
 		return dtoEmprunt;
 	}
 
+	@Override
+	public Livre findLivreByIdEmprunt(Long idEmprunt) {
+		// TODO Auto-generated method stub
+		return iDaoEmprunt.findLivreByIdEmprunt(idEmprunt);
+	}
+
+
 
 }
