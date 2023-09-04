@@ -45,6 +45,7 @@ public class InitDataSet {
 	 public void initData() {
 		 
 		 Domaine domaineAa = iDaoDomaine.save(new Domaine(null, "domaineAa", "descriptionAa"));
+		 iDaoDomaine.save(new Domaine(null, "Roman", "Roman"));
 		 
 		 Livre livreAa = iDaoLivre.save(new Livre(null,
 				 "titreAa",
@@ -53,6 +54,8 @@ public class InitDataSet {
 				 true,
 				 EtatLivre.BON_ETAT,
 				 domaineAa));
+		 
+		 
 		 
 		 Livre livreBb = iDaoLivre.save(new Livre(null,
 				 "titreBb",
@@ -63,10 +66,25 @@ public class InitDataSet {
 				 domaineAa));
 		 
 		 
-		 Lecteur lecteurAa = iDaoLecteur.save(new Lecteur(null,"Aa", "aa", "aa", "aa", "aa"
-				 ));
-		 Lecteur lecteurBb = iDaoLecteur.save(new Lecteur(null,"bb", "bb", "bb", "bb", "bb"
-				 ));
+		 Lecteur lecteurAa = iDaoLecteur.save(new Lecteur(null,"Pierre", "Vanbesien", "pierre.vanbesien@gmail.com", "0645329574", "Massy"));
+		 iDaoLecteur.save(new Lecteur(null,"Alan", "Terrac", "alan.terrac@outlook.fr", "0687984125", "Charenton"));
+		 iDaoLecteur.save(new Lecteur(null,"Muriel", "Dreyer", "murieldreyer@gmail.com", "0628653301", "Evry"));
+		 iDaoLecteur.save(new Lecteur(null,"Maxime", "Larmand", "larmand.maxime@hotmail.fr", "0692568415", "Chartres"));
+		 iDaoLecteur.save(new Lecteur(null,"Laurence", "Boulle", "laurenceboule@laposte.net", "0617241837", "Velizy"));
+		 iDaoLecteur.save(new Lecteur(null,"Mohammed", "Ali", "mohammedali@alice.fr", "0685235598", "Cannes"));
+		 iDaoLecteur.save(new Lecteur(null,"Herve", "Vilard", "herve@vilard.fr", "0785423514", "Sens"));
+		 iDaoLecteur.save(new Lecteur(null,"Emile", "Legrand", "emilelegrand@free.fr", "0632445867", "Nantes"));
+		 iDaoLecteur.save(new Lecteur(null,"Jacques", "Legros", "jacki.legros@netcourrier.com", "0747854137", "Metz"));
+		 iDaoLecteur.save(new Lecteur(null,"Jordan", "Rousselot", "rousselot@hotmail.fr", "0622189423", "Deauville"));
+		 iDaoLecteur.save(new Lecteur(null,"Mathieu", "Gautier", "mathieugautier@free.fr", "0773951976", "Marseille"));
+		 iDaoLecteur.save(new Lecteur(null,"Julie", "Boll", "julieB@hotmail.fr", "0745841455", "Lille"));
+		 iDaoLecteur.save(new Lecteur(null,"Roland", "Cottereau", "r.cottereau@gmail.fr", "0636642984", "Nancy"));
+		 iDaoLecteur.save(new Lecteur(null,"Stephane", "Verrouil", "stephaneV@netcourrier.com", "0659524168", "Biarritz"));
+		 iDaoLecteur.save(new Lecteur(null,"Sarah", "Schrub", "sarahs@gmail.com", "0683553687", "Sceaux"));
+		 iDaoLecteur.save(new Lecteur(null,"Christine", "Glutron", "g.christine@hotmail.com", "0620158411", "Anglet"));
+		 iDaoLecteur.save(new Lecteur(null,"Marina", "LeGallic", "marina.lg@gmail.com", "0622278653", "Bayonne"));
+		 iDaoLecteur.save(new Lecteur(null,"Sylvie", "Descourts", "descourtss@hotmail.fr", "0678966632", "Plessis-Robinson"));
+		 
 		 
 		 Administrateur adminAa = iDaoAdmin.save(new Administrateur(null, 
 				 "initNameAdmin",
