@@ -194,3 +194,5 @@ function updateLivre(idLivre) {
         allLivres(); // Actualisez le tableau avec les données mises à jour
     });
 }
+
+

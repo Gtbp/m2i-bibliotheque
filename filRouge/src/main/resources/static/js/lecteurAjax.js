@@ -104,12 +104,12 @@ function allLecteurs(){
             let updateBtn = document.createElement("button");
             updateBtn.className = "updateBtn button-light-blue";
             updateBtn.setAttribute("data-idpersonne", lecteur.idPersonne);
-            updateBtn.textContent = "Update";
+            updateBtn.textContent = "Modifier";
             
             let deleteBtn = document.createElement("button");
             deleteBtn.className = "deleteBtn button-grey";
             deleteBtn.setAttribute("data-idpersonne", lecteur.idPersonne);
-            deleteBtn.textContent = "Delete";
+            deleteBtn.textContent = "Supprimer";
             
             cellAction.appendChild(updateBtn);
             cellAction.appendChild(deleteBtn);

@@ -11299,6 +11299,7 @@ body {
   min-height: 40px;
   outline: 0;
   padding: 12px 14px;
+  margin-right:5px;
   text-align: center;
   text-rendering: geometricprecision;
   text-transform: none;
