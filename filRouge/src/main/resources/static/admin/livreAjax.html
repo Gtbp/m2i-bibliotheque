@@ -5,16 +5,14 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>lecteur Ajax</title>
+	<title>Livres</title>
 
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-	<link href="css/styles.css" rel="stylesheet" />
+	<link href="../css/styles.css" rel="stylesheet" />
 	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-	<script src="js/my_ajax_util.js" defer></script>
-	<script src="js/lecteurAjax.js" defer></script>
+	<script src="../js/my_ajax_util.js" defer></script>
+	<script src="../js/livreAjax.js" defer></script>	
 </head>
-
-<body>
 
 	<body class="sb-nav-fixed">
 		<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -67,13 +65,13 @@
 								data-bs-parent="#sidenavAccordion">
 								<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
-									<a class="nav-link" href="./api-bibliotheque/domaine">Domaines JSON</a>
-
-									<a class="nav-link" href="./api-bibliotheque/livre">Livres JSON</a>
-
-									<a class="nav-link" href="./api-bibliotheque/lecteur">Lecteurs JSON</a>
-
-									<a class="nav-link" href="./api-bibliotheque/emprunt">Emprunts JSON</a>
+									 <a class="nav-link" href="/filRouge/api-bibliotheque/domaine">Domaines JSON</a>
+                                                
+                                                <a class="nav-link" href="/filRouge/api-bibliotheque/livre">Livres JSON</a>      
+                                              
+                                                <a class="nav-link" href="/filRouge/api-bibliotheque/personne">Personnes JSON</a>
+                                                
+                                                <a class="nav-link" href="/filRouge/api-bibliotheque/emprunt">Emprunts JSON</a>  
 								</nav>
 							</div>
 
@@ -82,14 +80,15 @@
 					</div>
 					<div class="sb-sidenav-footer">
 						<div class="small">Connecté en tant que :</div>
-						Admin-01
+                        Admin-01 <br>
+                        <a class="small" href="/filRouge/logout">Se déconnecter</a>
 					</div>
 				</nav>
 			</div>
 			<div id="layoutSidenav_content">
 				<main>
 					<div class="container-fluid px-4">
-						<h1 class="mt-4 fa-table me-1">Lecteurs</h1>
+						<h1 class="mt-4 fa-table me-1">Livres</h1>
 						<ol class="breadcrumb mb-4">
 						</ol>
 						<div class="row">
@@ -97,13 +96,14 @@
 								<table class="table table-hover table-striped">
 									<thead>
 										<tr>
-											<th>id Lecteur</th>
-											<th>Prenom</th>
-											<th>Nom</th>
-											<th>Email</th>
-											<th>Telephone</th>
-											<th>Adresse</th>
-											<th>Actions</th>
+											<th>id Livre</th>
+											<th>Titre</th>
+											<th>Auteur</th>
+											<th>Editeur</th>
+											<th>Dispo</th>
+											<th>Etat</th>
+											<th>Domaine</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody id="table_body">
@@ -122,70 +122,93 @@
 
 							<div class="col-md-6">
 
-								<h2>Ajout de lecteur</h2>
+								<h2>Ajout de livre</h2>
 								<form class="row g-3">
 									<div class="col-md-4">
-										<label for="inputPrenom" class="form-label">Prénom</label>
-										<input type="text" class="form-control" id="inputPrenom">
+										<label for="inputTitre" class="form-label">Titre</label>
+										<input type="text" class="form-control" id="inputTitre">
 									</div>
 									<div class="col-md-4">
-										<label for="inputNom" class="form-label">Nom</label>
-										<input type="text" class="form-control" id="inputNom">
+										<label for="inputAuteur" class="form-label">Auteur</label>
+										<input type="text" class="form-control" id="inputAuteur">
 									</div>
 									<div class="col-md-4">
-										<label for="inputEmail" class="form-label">Email</label>
-										<input type="text" class="form-control" id="inputEmail">
+										<label for="inputEditeur" class="form-label">Editeur</label>
+										<input type="text" class="form-control" id="inputEditeur">
 									</div>
 									<div class="col-md-4">
-										<label for="inputTelephone" class="form-label">Téléphone</label>
-										<input type="text" class="form-control" id="inputTelephone">
+										<label for="selectDomaine" class="form-label">Domaine</label>
+										<select id="selectDomaine" class="form-select">
+											<!--select domaine -->
+										</select>
 									</div>
 									<div class="col-md-4">
-										<label for="inputAdresse" class="form-label">Adresse</label>
-										<input type="text" class="form-control" id="inputAdresse">
+										<label for="selectDispo" class="form-label">Disponibilité</label>
+										<select id="selectDispo" class="form-select">
+											<option value="false">false</option>
+											<option selected value="true">true</option>
+										</select>
 									</div>
-									
+									<div class="col-md-4">
+										<label for="selectEtat" class="form-label">Etat</label>
+										<select id="selectEtat" class="form-select">
+											<option value="BON_ETAT">BON_ETAT</option>
+											<option value="ABIME">ABIME</option>
+											<option value="HORS_SERVICE">HORS_SERVICE</option>
+										</select>
+									</div>
 
 									<div class="col-12">
-										<button id="btnAjout" class="btn button-blue">Ajouter</button>
+										<button id="btnAjout" class="button-blue">Ajouter</button>
 									</div>
 								</form>
 
 							</div>
 
 							<div class="col-md-6">
-								<h2>Modifier un lecteur</h2>
+								<h2>Modifier un livre</h2>
 
 								<form class="row g-3">
 									<div class="col-md-4">
-										<label for="inputUpdatePrenom" class="form-label">Prénom</label>
-										<input type="text" class="form-control" id="inputUpdatePrenom">
+										<label for="inputUpdateTitre" class="form-label">Titre</label>
+										<input type="text" class="form-control" id="inputUpdateTitre">
 									</div>
 									<div class="col-md-4">
-										<label for="inputUpdateNom" class="form-label">Nom</label>
-										<input type="text" class="form-control" id="inputUpdateNom">
+										<label for="inputUpdateAuteur" class="form-label">Auteur</label>
+										<input type="text" class="form-control" id="inputUpdateAuteur">
 									</div>
 									<div class="col-md-4">
-										<label for="inputUpdateEmail" class="form-label">Email</label>
-										<input type="text" class="form-control" id="inputUpdateEmail">
+										<label for="inputUpdateEditeur" class="form-label">Editeur</label>
+										<input type="text" class="form-control" id="inputUpdateEditeur">
 									</div>
-									<div class="col-md-4">
-										<label for="inputUpdateTelephone" class="form-label">Téléphone</label>
-										<input type="text" class="form-control" id="inputUpdateTelephone">
+									<div class="col-md-3">
+										<label for="selectUpdateDomaine" class="form-label">Domaine</label>
+										<select id="selectUpdateDomaine" class="form-select">
+										</select>
 									</div>
-									<div class="col-md-4">
-										<label for="inputUpdateAdresse" class="form-label">Adresse</label>
-										<input type="text" class="form-control" id="inputUpdateAdresse">
+									<div class="col-md-3">
+										<label for="selectUpdateDispo" class="form-label">Disponibilité</label>
+										<select id="selectUpdateDispo" class="form-select">
+											<option value="false">false</option>
+											<option selected value="true">true</option>
+										</select>
 									</div>
-									
+									<div class="col-md-3">
+										<label for="selectUpdateEtat" class="form-label">Etat</label>
+										<select id="selectUpdateEtat" class="form-select">
+											<option value="BON_ETAT">BON_ETAT</option>
+											<option value="ABIME">ABIME</option>
+											<option value="HORS_SERVICE">HORS_SERVICE</option>
+										</select>
+									</div>
 									<div class="col-md-2">
-										<label for="inputUpdateLecteur" class="form-label">Id</label>
-										<input type="text" class="form-control" disabled id="inputUpdateLecteur">
+										<label for="inputUpdateLivre" class="form-label">Id</label>
+										<input type="text" class="form-control" disabled id="inputUpdateLivre">
 									</div>
 									
 									
 									<div class="col-12">
-										<button id="btnUpdateLecteur" class="btn button-light-blue">Modifier</button>
+										<button id="btnUpdateLivre" class="button-light-blue">Modifier</button>
 									</div>
 								</form>
 							</div>
@@ -206,11 +229,11 @@
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 			crossorigin="anonymous"></script>
-		<script src="js/scripts.js"></script>
+		<script src="../js/scripts.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
 			crossorigin="anonymous"></script>
 
 	</body>
-</body>
+
 
 </html>

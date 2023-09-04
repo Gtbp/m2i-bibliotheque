@@ -84,7 +84,7 @@ function addLivre(){
 	                 domaine : domaine       
 	                  };
 	let livreJson = JSON.stringify(livreJs) ;  
-	let wsUrl = "./api-bibliotheque/livre";   
+	let wsUrl = "/filRouge/api-bibliotheque/livre";   
 	makeAjaxPostRequest(wsUrl,livreJson,function (responseJson){
 		console.log("responseJson="+responseJson);
 		allLivres(); //pour rafraîchir le tableau avec nouveau livre ajoute
@@ -92,7 +92,7 @@ function addLivre(){
 }
 
 function allDomaines(){
-	let wsUrl = "./api-bibliotheque/domaine";
+	let wsUrl = "/filRouge/api-bibliotheque/domaine";
 	
 	makeAjaxGetRequest(wsUrl,function(responseJson){
 		let domainesJs = JSON.parse(responseJson);
@@ -118,7 +118,7 @@ function allDomaines(){
 	
 function allLivres(){	
 
-	let wsUrl = "./api-bibliotheque/livre";
+	let wsUrl = "/filRouge/api-bibliotheque/livre";
 	
 	makeAjaxGetRequest(wsUrl,function(responseJson){
 		let livresJs = JSON.parse(responseJson);
@@ -154,7 +154,7 @@ function allLivres(){
 }
 
 function deleteLivre(idLivre) {
-    let wsUrl = "./api-bibliotheque/livre/" + idLivre;
+    let wsUrl = "/filRouge/api-bibliotheque/livre/" + idLivre;
 
     makeAjaxDeleteRequest(wsUrl, function(responseJson) {
         console.log("Livre supprimé : " + responseJson);
@@ -163,7 +163,7 @@ function deleteLivre(idLivre) {
 }
 
 function updateLivre(idLivre) {
-    let wsUrl = "./api-bibliotheque/livre/" + idLivre;
+    let wsUrl = "/filRouge/api-bibliotheque/livre/" + idLivre;
 
 	let updatedId =	document.getElementById("inputUpdateLivre").value;
     let updatedTitre =   document.getElementById("inputUpdateTitre").value;
