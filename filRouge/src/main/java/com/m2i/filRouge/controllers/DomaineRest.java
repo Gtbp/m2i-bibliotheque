@@ -78,7 +78,7 @@ public class DomaineRest {
 	// Delete
 	
 	@DeleteMapping("/{idDomaine}")
-	public ResponseEntity<?> deleteLivre(@PathVariable("idDomaine") Long idDomaine) {
+	public ResponseEntity<?> deleteDomaine(@PathVariable("idDomaine") Long idDomaine) {
 		    serviceDomaine.deleteById(idDomaine);
 		    return new ResponseEntity<String>("{ \"done\" : \"Domaine deleted\"}" ,HttpStatus.OK); 
 		    

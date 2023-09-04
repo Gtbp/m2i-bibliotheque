@@ -62,7 +62,7 @@ function addDomaine(){
 	                 description : description     
 	                  };
 	let domaineJson = JSON.stringify(domaineJs) ;  
-	let wsUrl = "./api-bibliotheque/domaine";   
+	let wsUrl = "/filRouge/api-bibliotheque/domaine";   
 	makeAjaxPostRequest(wsUrl,domaineJson,function (responseJson){
 		console.log("responseJson="+responseJson);
 		allDomaines(); //pour rafraîchir le tableau avec nouveau domaine ajoute
@@ -72,7 +72,7 @@ function addDomaine(){
 function allDomaines(){	
 
 	
-	let wsUrl = "./api-bibliotheque/domaine";
+	let wsUrl = "/filRouge/api-bibliotheque/domaine";
 	
 	makeAjaxGetRequest(wsUrl,function(responseJson){
 		let domaineJs = JSON.parse(responseJson);
@@ -105,7 +105,7 @@ function allDomaines(){
 }
 
 function deleteDomaine(idDomaine) {
-    let wsUrl = "./api-bibliotheque/domaine/" + idDomaine;
+    let wsUrl = "/filRouge/api-bibliotheque/domaine/" + idDomaine;
 
     makeAjaxDeleteRequest(wsUrl, function(responseJson) {
         console.log("Domaine supprimé : " + responseJson);
@@ -115,7 +115,7 @@ function deleteDomaine(idDomaine) {
 
 
 function updateDomaine(idDomaine) {
-    let wsUrl = "./api-bibliotheque/domaine/" + idDomaine;
+    let wsUrl = "/filRouge/api-bibliotheque/domaine/" + idDomaine;
 
 	let updatedId =	document.getElementById("inputUpdateDomaine").value;
     let updatedNom =   document.getElementById("inputUpdateNom").value;

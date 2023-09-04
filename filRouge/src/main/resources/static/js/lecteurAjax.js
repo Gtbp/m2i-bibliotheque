@@ -73,7 +73,7 @@ function addLecteur(){
 	                 adresse : adresse, 
 	                 };
 	let lecteurJson = JSON.stringify(lecteurJs) ;  
-	let wsUrl = "./api-bibliotheque/lecteur";   
+	let wsUrl = "/filRouge/api-bibliotheque/lecteur";   
 	makeAjaxPostRequest(wsUrl,lecteurJson,function (responseJson){
 		console.log("responseJson="+responseJson);
 		allLecteurs(); //pour rafraîchir le tableau avec nouveau livre ajoute
@@ -82,7 +82,7 @@ function addLecteur(){
 
 function allLecteurs(){	
 
-	let wsUrl = "./api-bibliotheque/lecteur";
+	let wsUrl = "/filRouge/api-bibliotheque/lecteur";
 	
 	makeAjaxGetRequest(wsUrl,function(responseJson){
 		let lecteursJs = JSON.parse(responseJson);
@@ -122,7 +122,7 @@ function allLecteurs(){
 }
 
 function deleteLecteur(idLecteur) {
-    let wsUrl = "./api-bibliotheque/lecteur/" + idLecteur;
+    let wsUrl = "/filRouge/api-bibliotheque/lecteur/" + idLecteur;
 
     makeAjaxDeleteRequest(wsUrl, function(responseJson) {
         console.log("Lecteur supprimé : " + responseJson);
@@ -131,7 +131,7 @@ function deleteLecteur(idLecteur) {
 }
 
 function updateLecteur(idLecteur){
-	let wsUrl = "./api-bibliotheque/lecteur/" + idLecteur;
+	let wsUrl = "/filRouge/api-bibliotheque/lecteur/" + idLecteur;
 		
 	let updatedId = document.getElementById("inputUpdateLecteur").value;
 	let updatedPrenom = document.getElementById("inputUpdatePrenom").value;
