@@ -100,7 +100,7 @@ function addEmprunt(){
 	                  };
 	let empruntJson = JSON.stringify(empruntJs) ;  
 	console.log(empruntJson);
-	let wsUrl = "./api-bibliotheque/emprunt";   
+	let wsUrl = "/filRouge/api-bibliotheque/emprunt";   
 	makeAjaxPostRequest(wsUrl,empruntJson,function (responseJson){
 		console.log("responseJson="+responseJson);
 		allEmprunts(); //pour rafraîchir le tableau avec nouvel emprunt ajoute
@@ -109,7 +109,7 @@ function addEmprunt(){
 	
 function allLivres(){
 	
-	let wsUrl = "./api-bibliotheque/livre";
+	let wsUrl = "/filRouge/api-bibliotheque/livre";
 	
 	makeAjaxGetRequest(wsUrl,function(responseJson){
 		let livresJs = JSON.parse(responseJson);
@@ -136,7 +136,7 @@ function allLivres(){
 
 function allLecteurs(){
 		
-	let wsUrl = "./api-bibliotheque/lecteur";
+	let wsUrl = "/filRouge/api-bibliotheque/lecteur";
 	
 	makeAjaxGetRequest(wsUrl,function(responseJson){
 		let lecteursJs = JSON.parse(responseJson);
@@ -163,7 +163,7 @@ function allLecteurs(){
 
 function allEmprunts(){	
 
-	let wsUrl = "./api-bibliotheque/emprunt";
+	let wsUrl = "/filRouge/api-bibliotheque/emprunt";
 	
 	makeAjaxGetRequest(wsUrl,function(responseJson){
 		let empruntJs = JSON.parse(responseJson);
@@ -198,7 +198,7 @@ function allEmprunts(){
 }
 
 function deleteEmprunt(idEmprunt) {
-    let wsUrl = "./api-bibliotheque/emprunt/" + idEmprunt;
+    let wsUrl = "/filRouge/api-bibliotheque/emprunt/" + idEmprunt;
 
     makeAjaxDeleteRequest(wsUrl, function(responseJson) {
         console.log("Emprunt supprimé : " + responseJson);
@@ -208,7 +208,7 @@ function deleteEmprunt(idEmprunt) {
 
 
 function updateEmprunt(idEmprunt) {
-    let wsUrl = "./api-bibliotheque/emprunt/" + idEmprunt;
+    let wsUrl = "/filRouge/api-bibliotheque/emprunt/" + idEmprunt;
 
 	let updatedId =	document.getElementById("inputUpdateEmprunt").value;
     let updatedDateDebut =   document.getElementById("inputUpdateDateDebut").value;
