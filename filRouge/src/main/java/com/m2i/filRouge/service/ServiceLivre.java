@@ -43,8 +43,6 @@ public class ServiceLivre extends AbstractGenericService<Livre, Long, DtoLivre> 
 		dtoLivre.setIdLivre(livreEntity.getIdLivre());
 		return dtoLivre;
 	}
-
 	
-
 	
 }

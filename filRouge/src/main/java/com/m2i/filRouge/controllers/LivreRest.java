@@ -33,9 +33,7 @@ public class LivreRest {
 	@Autowired
 	private ServiceDomaine serviceDomaine;
 	
-	
 	// display one book (with ExceptionHandler)
-	
 	@GetMapping("/{idLivre}" )
 	public DtoLivre getLivreById(@PathVariable("idLivre") Long idLivre) {
 	  return serviceLivre.findDtoById(idLivre);  
@@ -86,5 +84,6 @@ public class LivreRest {
 		    return new ResponseEntity<String>("{ \"done\" : \"Livre deleted\"}" ,HttpStatus.OK); 
 		    
 		}
+
 	
 }
