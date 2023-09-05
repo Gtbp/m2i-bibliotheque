@@ -11353,3 +11353,10 @@ body {
 .button-grey:active {
   opacity: .5;
 }
+
+#messageIndispo {
+  display: none; 
+  color: red; /* Couleur du texte en rouge, vous pouvez la personnaliser */
+  font-weight: bold; /* Texte en gras, vous pouvez le personnaliser */
+  /* Autres styles CSS que vous souhaitez appliquer au message */
+}

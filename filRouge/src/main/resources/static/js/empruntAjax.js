@@ -65,7 +65,6 @@ document.getElementById("btnUpdateEmprunt").addEventListener( "click", function(
 
 function addEmprunt(){	
 	
-	
 		function formatDate(date) {
 			const d = new Date(date);
 			const year = d.getFullYear();
@@ -89,7 +88,9 @@ function addEmprunt(){
 	// livre
 	let livreId = (document.getElementById("selectLivre")).value;
 	let livreTitre = document.getElementById("selectLivre").options[document.getElementById("selectLivre").selectedIndex].text;
-	let livre = { idLivre: livreId, titre: livreTitre };
+	let livreDispo = document.getElementById("selectLivre").options[document.getElementById("selectLivre").selectedIndex].getAttribute("data-dispo");
+
+	let livre = { idLivre: livreId, titre: livreTitre, dispo: livreDispo };
 	
 	
 	let empruntJs = { date_debut : today,
@@ -98,13 +99,18 @@ function addEmprunt(){
 	                 lecteur : lecteur, 
 	                 livre : livre    
 	                  };
-	let empruntJson = JSON.stringify(empruntJs) ;  
-	console.log(empruntJson);
-	let wsUrl = "/filRouge/api-bibliotheque/emprunt";   
-	makeAjaxPostRequest(wsUrl,empruntJson,function (responseJson){
-		console.log("responseJson="+responseJson);
-		allEmprunts(); //pour rafraîchir le tableau avec nouvel emprunt ajoute
-	});         
+
+		let empruntJson = JSON.stringify(empruntJs);
+		console.log(empruntJson);
+		let wsUrl = "/filRouge/api-bibliotheque/emprunt";
+		makeAjaxPostRequest(wsUrl, empruntJson, function (responseJson) {
+			console.log("responseJson=" + responseJson);
+			allEmprunts(); //pour rafraîchir le tableau avec le nouvel emprunt ajouté
+			
+		});
+
+
+	    
 }
 	
 function allLivres(){
@@ -119,6 +125,7 @@ function allLivres(){
 			let option = document.createElement("option");
 			option.value = livre.idLivre;
 			option.innerHTML=livre.titre;
+			option.setAttribute("data-dispo", livre.dispo)
 			selectElt.appendChild(option);
 			}
 
@@ -127,6 +134,7 @@ function allLivres(){
 			let option = document.createElement("option");
 			option.value = livre.idLivre;
 			option.innerHTML=livre.titre;
+			option.setAttribute("data-dispo", livre.dispo)
 			selectUpdateElt.appendChild(option);
 			}		
 

@@ -37,20 +37,44 @@ public class ServiceEmprunt extends AbstractGenericService<Emprunt, Long, DtoEmp
 		return DtoEmprunt.class;
 	}
 
+	
 	@Override
 	public DtoEmprunt saveOrUpdateDtoEmprunt(DtoEmprunt dtoEmprunt) {
-		Emprunt empruntEntity = MyConverter.map(dtoEmprunt, Emprunt.class);
-		if(dtoEmprunt.getLivre() != null && dtoEmprunt.getLecteur() != null) {
-			Livre livreEntity = iDaoLivre.findById(dtoEmprunt.getLivre().getIdLivre()).orElse(null);
-			Lecteur lecteurEntity = iDaoLecteur.findById(dtoEmprunt.getLecteur().getIdPersonne()).orElse(null);
-			empruntEntity.setLivre(livreEntity);			
-			empruntEntity.setLecteur(lecteurEntity);
-		}
-		
-		iDaoEmprunt.save(empruntEntity);
-		dtoEmprunt.setIdEmprunt(empruntEntity.getIdEmprunt());
-		
-		return dtoEmprunt;
+	    // Obtenez les entités Livre et Lecteur
+	    Livre livreEntity = null;
+	    Lecteur lecteurEntity = null;
+	    
+	    if (dtoEmprunt.getLivre() != null) {
+	        livreEntity = iDaoLivre.findById(dtoEmprunt.getLivre().getIdLivre()).orElse(null);
+	    }
+	    
+	    if (dtoEmprunt.getLecteur() != null) {
+	        lecteurEntity = iDaoLecteur.findById(dtoEmprunt.getLecteur().getIdPersonne()).orElse(null);
+	    }
+	    
+	    // Vérifiez la disponibilité du livre
+	    if (livreEntity != null && livreEntity.getDispo()) {
+	        // Créez l'entité Emprunt
+	        Emprunt empruntEntity = MyConverter.map(dtoEmprunt, Emprunt.class);
+
+	        // Associez les entités Livre et Lecteur à Emprunt
+	        empruntEntity.setLivre(livreEntity);
+	        empruntEntity.setLecteur(lecteurEntity);
+
+	        // Mettez à jour la disponibilité du livre
+	        livreEntity.setDispo(false);
+	        
+	        // Enregistrez l'entité Emprunt
+	        iDaoEmprunt.save(empruntEntity);
+	        
+	        // Mettez à jour l'ID de DtoEmprunt
+	        dtoEmprunt.setIdEmprunt(empruntEntity.getIdEmprunt());
+	        
+	        return dtoEmprunt;
+	    } else {
+	        System.err.println("Error with SaveOrUpdateDtoEmprunt: Livre not available");
+	        return null;
+	    }
 	}
 
 	@Override
