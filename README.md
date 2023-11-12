@@ -1,2 +1,8 @@
-# m2i-bibliotheque
-Projet fil rouge formation M2i Java Oracle 
+# Library Application
+
+## Description
+The aim of this project is to create a library application with borrowing management.
+
+## Prerequisites
+- Java 17
+- Eclipse IDE (2023-06)
