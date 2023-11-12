@@ -10,6 +10,7 @@ The aim of this project is to create a library application with borrowing manage
 - Docker (optional)
 
 ## Getting Started
+
 ###Launching with Eclipse
 1. Open Eclipse IDE
 2. Import the project
