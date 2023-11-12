@@ -11,7 +11,7 @@ The aim of this project is to create a library application with borrowing manage
 
 ## Getting Started
 
-###Launching with Eclipse
+Launching with Eclipse
 1. Open Eclipse IDE
 2. Import the project
 3. Start your database
